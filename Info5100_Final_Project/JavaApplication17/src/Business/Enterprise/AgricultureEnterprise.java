@@ -8,6 +8,16 @@ package Business.Enterprise;
  *
  * @author rudrapatel
  */
-public class AgricultureEnterprise {
-    
+import Business.Role.Role;
+import java.util.ArrayList;
+
+public class AgricultureEnterprise extends Enterprise {
+
+    public AgricultureEnterprise(String name){
+        super(name,Enterprise.EnterpriseType.Agriculture);
+    }
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        return null;
+    }
 }

@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author rudrapatel
  */
 public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
@@ -137,7 +137,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(47, 72, 147));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabel6.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));

@@ -54,6 +54,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        jSplitPane.setMaximumSize(new java.awt.Dimension(0, 0));
+
         jLabel1.setText("Selected Node:");
 
         lblSelectedNode.setText("<View_selected_node>");
@@ -136,7 +138,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnManageNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnManageAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(jPanel2);

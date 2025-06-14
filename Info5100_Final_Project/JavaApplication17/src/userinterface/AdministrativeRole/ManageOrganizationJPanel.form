@@ -31,10 +31,7 @@
                               <Component id="organizationJComboBox" min="-2" pref="81" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="237" pref="237" max="-2" attributes="0"/>
-                              <Component id="addJButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="addJButton" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -141,7 +138,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="93" green="48" red="2f" type="rgb"/>
+          <Color blue="66" green="99" red="0" type="rgb"/>
         </Property>
       </Properties>
 

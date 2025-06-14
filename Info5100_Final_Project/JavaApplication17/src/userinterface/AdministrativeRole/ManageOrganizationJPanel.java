@@ -121,7 +121,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(47, 72, 147));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabel3.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,9 +161,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                                 .addGap(32, 32, 32)
                                 .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(159, 159, 159))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(237, 237, 237)
-                                .addComponent(addJButton))))
+                            .addComponent(addJButton, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)

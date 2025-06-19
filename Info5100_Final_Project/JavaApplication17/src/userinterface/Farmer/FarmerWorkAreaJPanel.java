@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.farmer;
+package userinterface.Farmer;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -98,9 +98,8 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         btnRequestSubsidy = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnForum = new javax.swing.JButton();
-        btnYearlyTrends = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(47, 72, 147));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabel5.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -338,7 +337,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(47, 72, 147));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 102));
 
         btnForum.setText("Forum");
         btnForum.addActionListener(new java.awt.event.ActionListener() {
@@ -347,32 +346,21 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnYearlyTrends.setText("Yearly Trends");
-        btnYearlyTrends.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYearlyTrendsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addGap(611, 611, 611)
                 .addComponent(btnForum, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnYearlyTrends, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(494, 494, 494))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnForum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnYearlyTrends, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnForum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -510,11 +498,6 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 row[0] = ftwr.getDisease().getDiseaseType();
                 row[1] = ftwr.getDisease().getDiseaseCondition();
                 row[2] = ftwr.getTreatmentComments();
-//                if(ftwr.getIsTreated()){
-//                    row[2] = ftwr.getTreatmentComments();
-//                }else{
-//                    row[2] = "Doctor's Feedback awaited";
-//                }
                 row[3] = ftwr.getStatus();
                 
                 model.addRow(row);
@@ -679,31 +662,11 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
-//        boolean flag = false;
-//        FarmerTreatmentWorkRequest wr = null;
-//        for(WorkRequest workRequest : org.getWorkQueue().getWorkRequestList()){
-//            FarmerTreatmentWorkRequest farmerTreatment= (FarmerTreatmentWorkRequest) workRequest;
-//            if(workRequest instanceof FarmerTreatmentWorkRequest && workRequest.getSender().getUsername().equals(userAccount.getUsername())){
-//                wr = (FarmerTreatmentWorkRequest) workRequest;
-//                if(wr.getIsTreated()){
-//                    flag = true;
-//                    break;
-//                }
-//
-//            }
-//        }
 
-//        if(flag){
-//            JOptionPane.showMessageDialog(null,"Already Treated !!!" );
-//            
-//            return;
-//        }
-//        else
-        //{
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             userProcessContainer.add("FarmerRequestTreatmentJPanel", new FarmerRequestTreatmentJPanel(userProcessContainer, userAccount, enterprise,organization,business));
             layout.next(userProcessContainer);
-        //}
+      
     }//GEN-LAST:event_btnRequestTreatmentActionPerformed
 
     private void btnCheckOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOrdersActionPerformed
@@ -723,85 +686,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnRequestSubsidyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestSubsidyActionPerformed
         // TODO add your handling code here:
-        /*boolean flag = false;
-        //FarmerCropWorkRequest fc = null;
-        double loss = 0.0;
-
-        for(WorkRequest workRequest :userAccount.getWorkQueue().getWorkRequestList()){
-            if(workRequest instanceof FarmerCropWorkRequest){
-                FarmerCropWorkRequest fs= (FarmerCropWorkRequest) workRequest;
-                Date date1 = fs.getRequestDate();
-                Date date2 = new Date();
-                if(fs.getCrop().getExpiryDate().before(date2) ){//&& (Months.monthsBetween(new LocalDate(date1), new LocalDate(date2))).getMonths() >= 6){
-                    loss +=fs.getCrop().getQuantity() * fs.getCrop().getPrice();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Subsidy cannot be given as no expired crops"+loss);
-                }
-            }
-        }
-
-        FarmerSubsidyWorkRequest subsidyWorkRequest = null;
-
-        for(WorkRequest workRequest :userAccount.getWorkQueue().getWorkRequestList()){
-
-            if(workRequest instanceof FarmerSubsidyWorkRequest){
-                Date date1 = workRequest.getResolveDate();
-                Date date2 = new Date();
-                if((Months.monthsBetween(new LocalDate(date2), new LocalDate(date1))).getMonths() >= 6 ){
-                    FarmerSubsidyWorkRequest fs= (FarmerSubsidyWorkRequest) workRequest;
-                    subsidyWorkRequest = (FarmerSubsidyWorkRequest) workRequest;
-                    if(subsidyWorkRequest.isIsSubsidyApproved()){
-                        flag = true;
-                        break;
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Subsidy already given before less than 6 months");
-                    flag = true;
-                    break;
-                }
-
-            }
-        }
-        if(flag){
-            JOptionPane.showMessageDialog(null,"Already issued Subsidy!" );
-        }
-        else
-        {
-            FarmerSubsidyWorkRequest farmerSubsidyWorkRequest = new FarmerSubsidyWorkRequest();
-            farmerSubsidyWorkRequest.setRequestDate(new Date());
-            farmerSubsidyWorkRequest.setSender(userAccount);
-            farmerSubsidyWorkRequest.setStatus("Sent");
-            farmerSubsidyWorkRequest.setRequestedSubsidyValue(loss);
-
-            Organization org = null;
-            for (Network network : business.getNetworkList()) {
-                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    if (enterprise instanceof GovernmentEnterprise) {
-                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                            if (organization instanceof OfficerOrganization) {
-                                org = organization;
-                                break;
-                            }
-                        }
-                    }
-
-                }
-            }
-
-            if (org != null) {
-                //if(userAccount.getWorkQueue().getWorkRequestList().size() == 0){
-                    org.getWorkQueue().getWorkRequestList().add(farmerSubsidyWorkRequest);
-                    userAccount.getWorkQueue().getWorkRequestList().add(farmerSubsidyWorkRequest);
-                    JOptionPane.showMessageDialog(null, "You have created request successfully");
-
-                    //                }else{
-                    //
-                    //                    org.getWorkQueue().getWorkRequestList().add(farmerSubsidyWorkRequest);
-                    //                    userAccount.getWorkQueue().getWorkRequestList().add(farmerSubsidyWorkRequest);
-                    //                    JOptionPane.showMessageDialog(null, "You have created request successfully");
-                    //
-                    //                }
-            }*/
+        
 double loss = 0.0;
 
 for (WorkRequest workRequest : userAccount.getWorkQueue().getWorkRequestList()) {         
@@ -817,13 +702,6 @@ layout.next(userProcessContainer);
 
     }//GEN-LAST:event_btnRequestSubsidyActionPerformed
 
-    private void btnYearlyTrendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYearlyTrendsActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("TopThreeOrganicCropsStatisticsJPanel", new TopThreeOrganicCropsStatisticsJPanel(userProcessContainer, userAccount, organization,enterprise,business));
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnYearlyTrendsActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCheckEvents;
@@ -833,7 +711,6 @@ layout.next(userProcessContainer);
     private javax.swing.JButton btnRequestSubsidy;
     private javax.swing.JButton btnRequestTreatment;
     private javax.swing.JButton btnSellOrganicCrops;
-    private javax.swing.JButton btnYearlyTrends;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

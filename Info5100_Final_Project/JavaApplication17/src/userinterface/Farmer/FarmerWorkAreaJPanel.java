@@ -636,8 +636,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
-        //            System.out.println("Certi"+wr.getIsCertified());
-
+    
         if(flag){
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             userProcessContainer.add("FarmerSellPortalJPanel", new FarmerSellPortalJPanel(userProcessContainer, userAccount, organization, enterprise, business));

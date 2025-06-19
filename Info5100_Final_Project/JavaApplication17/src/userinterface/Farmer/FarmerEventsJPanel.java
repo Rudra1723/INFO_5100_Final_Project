@@ -25,7 +25,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import static userinterface.Customer.CustomerOrderJPanel.VALID_EMAIL_ADDRESS_REGEX;
 import static userinterface.Customer.CustomerOrderJPanel.validate;
-import userinterface.Customer.SendMailUsingAuthentication;
+
 
 /**
  *

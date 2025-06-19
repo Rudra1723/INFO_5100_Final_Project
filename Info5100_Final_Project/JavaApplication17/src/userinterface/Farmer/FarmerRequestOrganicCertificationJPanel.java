@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Pranali
+ * @author rudrapatel
  */
 public class FarmerRequestOrganicCertificationJPanel extends javax.swing.JPanel {
 
@@ -205,7 +205,6 @@ public class FarmerRequestOrganicCertificationJPanel extends javax.swing.JPanel 
         
         organicCertification.setSoilType((OrganicCertification.SoilType) comboSoilType.getSelectedItem());
         organicCertification.setSoilStructure((OrganicCertification.SoilStructure) comboSoilStructure.getSelectedItem());
-//        System.out.println("Ferti used: "+ jRadioButton1.isSelected());
         organicCertification.setUsedFertilizersInLastThreeYears(jRadioButton1.isSelected());
         
         organicCertificationWorkRequest.setOrganicCertification(organicCertification);
@@ -233,7 +232,7 @@ public class FarmerRequestOrganicCertificationJPanel extends javax.swing.JPanel 
 
             }
         }
-        //System.out.println("org" +org);
+        
         List<WorkRequest> temp = new ArrayList<>();
         if (org != null) {
             if(userAccount.getWorkQueue().getWorkRequestList().size() == 0){
@@ -252,31 +251,7 @@ public class FarmerRequestOrganicCertificationJPanel extends javax.swing.JPanel 
                 btnRequest.setEnabled(false);
                 comboSoilType.removeAllItems();
                 comboSoilStructure.removeAllItems();
-//                btnIfFertilizerUsed.clearSelection();
-//                for(WorkRequest w : userAccount.getWorkQueue().getWorkRequestList()){
-//            
-//                if(w instanceof OrganicCertificationWorkRequest){
-//                    temp.add(w);
-//                    JOptionPane.showMessageDialog(null, "You already have requested for Organic Certification");
-//                    break;
-//                }
-//                else
-//                {
-//                    org.getWorkQueue().getWorkRequestList().add(organicCertificationWorkRequest);
-//                    userAccount.getWorkQueue().getWorkRequestList().add(organicCertificationWorkRequest);
-//                    JOptionPane.showMessageDialog(null, "You have created request successfully");
-//                    btnRequest.setEnabled(false);
-//                    comboSoilType.removeAllItems();
-//                    comboSoilStructure.removeAllItems();
-//                    btnIfFertilizerUsed.clearSelection();
-//                }
-//            }
-//                System.out.println("Before Temp: " + temp);
-//                userAccount.getWorkQueue().getWorkRequestList().removeAll(temp);
-//                org.getWorkQueue().getWorkRequestList().removeAll(temp);
-//                for(WorkRequest w: org.getWorkQueue().getWorkRequestList()){
-//                    System.out.println("Type"+ w);
-//                }
+//                
             }
             
             
@@ -286,7 +261,7 @@ public class FarmerRequestOrganicCertificationJPanel extends javax.swing.JPanel 
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-//        fwajp.populateOrganicCertificationRequestTable();
+
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];

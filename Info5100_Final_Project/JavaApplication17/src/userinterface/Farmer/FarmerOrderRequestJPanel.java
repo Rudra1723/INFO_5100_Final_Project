@@ -104,8 +104,7 @@ public class FarmerOrderRequestJPanel extends javax.swing.JPanel {
             }
             
         }
-       // org.getWorkQueue().getWorkRequestList().removeAll(temp);
-       // System.out.println("User Account "+userAccount.getWorkQueue().getWorkRequestList());
+
         
         
     
@@ -171,7 +170,7 @@ public class FarmerOrderRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(47, 72, 147));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabel3.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));

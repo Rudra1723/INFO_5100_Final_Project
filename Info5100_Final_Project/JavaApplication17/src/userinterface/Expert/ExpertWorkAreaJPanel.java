@@ -158,7 +158,7 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 250, 120, 50));
 
-        jPanel1.setBackground(new java.awt.Color(47, 72, 147));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabel3.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));

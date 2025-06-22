@@ -13,7 +13,7 @@ import userinterface.Government.OfficerWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author rudrapatel
  */
 public class OfficerRole extends Role {
 

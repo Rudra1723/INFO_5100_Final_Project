@@ -87,6 +87,7 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblCertificationRequest.setBackground(new java.awt.Color(200, 230, 215));
         tblCertificationRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

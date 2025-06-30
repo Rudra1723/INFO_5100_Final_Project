@@ -117,6 +117,7 @@ public class FarmerOrderRequestJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
+        tblOrders.setBackground(new java.awt.Color(200, 230, 215));
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

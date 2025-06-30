@@ -84,6 +84,7 @@ public class RequestDoctorTreatmentJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        tblTreatmentRequest.setBackground(new java.awt.Color(200, 230, 215));
         tblTreatmentRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -113,6 +114,7 @@ public class RequestDoctorTreatmentJPanel extends javax.swing.JPanel {
         tblTreatmentRequest.setRowHeight(25);
         jScrollPane2.setViewportView(tblTreatmentRequest);
 
+        btnAssignToMe.setBackground(new java.awt.Color(180, 215, 200));
         btnAssignToMe.setText("Assign to me");
         btnAssignToMe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +122,7 @@ public class RequestDoctorTreatmentJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnViewRequest.setBackground(new java.awt.Color(180, 215, 200));
         btnViewRequest.setText("View Request");
         btnViewRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

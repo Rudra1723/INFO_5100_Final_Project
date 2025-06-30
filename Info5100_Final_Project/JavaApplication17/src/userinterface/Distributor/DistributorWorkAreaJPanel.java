@@ -69,6 +69,7 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
+        tblTransportRequest.setBackground(new java.awt.Color(200, 230, 215));
         tblTransportRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},

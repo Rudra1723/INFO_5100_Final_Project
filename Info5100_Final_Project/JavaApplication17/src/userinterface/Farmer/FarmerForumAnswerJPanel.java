@@ -118,6 +118,7 @@ public class FarmerForumAnswerJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAnswer = new javax.swing.JTextArea();
 
+        tblAnswer.setBackground(new java.awt.Color(200, 230, 215));
         tblAnswer.setFont(new java.awt.Font("Malayalam MN", 0, 14)); // NOI18N
         tblAnswer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

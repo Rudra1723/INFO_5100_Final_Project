@@ -217,7 +217,6 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
         // TODO add your handling code here:
        try {
-    // Updated regex to accept both integers and floats (including decimals)
     String quantRegex = "^[0-9]+(\\.[0-9]+)?$";
     
     if (txtSubsidyAmountGranted.getText().isEmpty()) {
@@ -249,8 +248,7 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
         txtSubsidyAmountGranted.requestFocus();
         return;
     }
-    
-    // NEW VALIDATION: Check for negative values
+
     if (percentageGranted < 0.0) {
         JOptionPane.showMessageDialog(null, 
             "Subsidy percentage cannot be negative.\nPlease enter a value between 0 and 100.",
@@ -342,7 +340,7 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
     private void BtnrejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnrejectActionPerformed
         // TODO add your handling code here:
         try {
-        // Check if officer has provided comments for rejection
+      
         if (txtOfficerComments.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, 
                 "Please enter comments explaining the reason for rejection",

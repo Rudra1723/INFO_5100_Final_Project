@@ -144,6 +144,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
+        tblCropRequest.setBackground(new java.awt.Color(200, 230, 215));
         tblCropRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

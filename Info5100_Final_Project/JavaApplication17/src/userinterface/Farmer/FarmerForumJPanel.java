@@ -104,6 +104,8 @@ public class FarmerForumJPanel extends javax.swing.JPanel {
             tblForum.getColumnModel().getColumn(1).setMaxWidth(2000);
         }
 
+        btnAddQuestion.setBackground(new java.awt.Color(0, 153, 102));
+        btnAddQuestion.setForeground(new java.awt.Color(255, 255, 255));
         btnAddQuestion.setText("Submit");
         btnAddQuestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +113,8 @@ public class FarmerForumJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnAnswer.setBackground(new java.awt.Color(0, 153, 102));
+        btnAnswer.setForeground(new java.awt.Color(255, 255, 255));
         btnAnswer.setText("Check Answers");
         btnAnswer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

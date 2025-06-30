@@ -82,6 +82,7 @@ public class CustomerItemsOrderedJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
 
+        tblOrderedItems.setBackground(new java.awt.Color(200, 230, 215));
         tblOrderedItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

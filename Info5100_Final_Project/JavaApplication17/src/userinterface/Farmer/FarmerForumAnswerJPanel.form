@@ -97,6 +97,9 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tblAnswer">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="d7" green="e6" red="c8" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Malayalam MN" size="14" style="0"/>
             </Property>

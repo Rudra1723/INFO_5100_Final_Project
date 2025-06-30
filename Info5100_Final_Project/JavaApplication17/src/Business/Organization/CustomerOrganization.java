@@ -19,8 +19,8 @@ public class CustomerOrganization extends Organization{
     }
     
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList();
-        roles.add(new CustomerRole());
-        return roles;
+        ArrayList<Role> supportedRoles = new ArrayList();
+        supportedRoles.add(new CustomerRole());
+        return supportedRoles;
     }
 }

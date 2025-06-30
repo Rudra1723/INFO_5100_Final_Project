@@ -6,10 +6,13 @@ package userinterface.Expert;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrganicCertificationWorkRequest;
+import Business.EcoSystem;
+import Business.DB4OUtil.DB4OUtil;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.util.Date;
 
 /**
  *
@@ -20,22 +23,22 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     OrganicCertificationWorkRequest request;
     UserAccount userAccount;
+    EcoSystem business;
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
-    public ProcessWorkRequestJPanel(JPanel userProcessContainer, OrganicCertificationWorkRequest request,UserAccount userAccount) {
+    public ProcessWorkRequestJPanel(JPanel userProcessContainer, OrganicCertificationWorkRequest request,UserAccount userAccount, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
         this.userAccount = userAccount;
+        this.business = business;
         txtSoilType.setText(request.getOrganicCertification().getSoilType().getValue());
         txtSoilStructure.setText(request.getOrganicCertification().getSoilStructure().getValue());
         if(request.getOrganicCertification().isUsedFertilizersInLastThreeYears()){
-//            System.out.println("xjshdxjsxj");
             txtFertilizer.setText("Yes");
         }else
             txtFertilizer.setText("No");
-//        txtFertilizer.setText(String.valueOf(request.getOrganicCertification().isUsedFertilizersInLastThreeYears()));
     }
 
     /**
@@ -57,9 +60,10 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         txtSoilStructure = new javax.swing.JTextField();
         txtFertilizer = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
+        btnApprove.setBackground(new java.awt.Color(0, 153, 102));
+        btnApprove.setForeground(new java.awt.Color(255, 255, 255));
         btnApprove.setText("Approve Request");
         btnApprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,13 +73,15 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Soil Type:");
 
-        btnBack.setText("Back");
+        btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
+        btnReject.setBackground(new java.awt.Color(255, 51, 51));
+        btnReject.setForeground(new java.awt.Color(255, 255, 255));
         btnReject.setText("Reject Request");
         btnReject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,35 +95,25 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel4.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Process Organic Certification Request");
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Approve/Reject Organic Certification Requests");
+        jLabel6.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Process Organic Certification Request");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(488, 488, 488)
-                        .addComponent(jLabel5)))
-                .addContainerGap(704, Short.MAX_VALUE))
+                .addGap(308, 308, 308)
+                .addComponent(jLabel6)
+                .addContainerGap(790, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -125,55 +121,52 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(62, 62, 62))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
-                        .addComponent(btnApprove)
-                        .addGap(46, 46, 46)))
+                .addGap(19, 19, 19)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(119, 119, 119)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtSoilType, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                        .addComponent(txtSoilStructure)
-                        .addComponent(txtFertilizer))
-                    .addComponent(btnReject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(btnApprove))
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtSoilType, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(txtSoilStructure)
+                    .addComponent(btnReject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFertilizer))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel2)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSoilType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addComponent(txtSoilStructure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFertilizer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSoilStructure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(txtFertilizer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReject, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(171, Short.MAX_VALUE))
+                    .addComponent(btnReject, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -189,108 +182,80 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
-        //request.setTestResult(resultJTextField.getText());
-        String errorMsg = "";
-        boolean st = true;
-        if(!(request.getOrganicCertification().getSoilType().getValue().equalsIgnoreCase("Fertile Soil") ||
-            request.getOrganicCertification().getSoilType().getValue().equalsIgnoreCase("Nutricious Soil"))){
-            st = false;
-            System.out.println(st);
-            errorMsg += "Soil Type cannot be Sandy or Slit\n ";
-        }
-        
-        boolean ss = true;
-        if(!(request.getOrganicCertification().getSoilStructure().getValue().equalsIgnoreCase("Granular") ||
-            request.getOrganicCertification().getSoilStructure().getValue().equalsIgnoreCase("Crumb"))){
-            ss = false;
-            System.out.println(ss);
-            errorMsg += "Soil Structure cannot be Columns/Blocky/Plate-Like\n";
-        }
-        
-        boolean ifFerti = true;
-        if(request.getOrganicCertification().isUsedFertilizersInLastThreeYears()){
-            ifFerti = false;
-            System.out.println(ifFerti);
-            errorMsg += "Should not use Fertilizer in last three years";
-        }
-        
-        
-        
-//        if(errorMsg.length()==0){
-//            request.setIsCertified(true);
-//            request.setStatus("Completed");
-//            JOptionPane.showMessageDialog(null, "Request Approved");
-//        }
-        if(st && ss && ifFerti){
-            request.setIsCertified(true);
-            request.setStatus("Completed");
-            request.setReceiver(userAccount);
-            JOptionPane.showMessageDialog(null, "Request Approved");
-        }
-        else if(request.getStatus().equalsIgnoreCase("Completed"))
-        {
-            JOptionPane.showMessageDialog(null, "Request already approved!");
-            return;
-        }
-        else
-        {
-//            System.out.println("Hello");
-            JOptionPane.showMessageDialog(null, "Suggestion,you should not approve this request", errorMsg,HEIGHT );
-            JOptionPane.showMessageDialog(null, errorMsg);
-//            JOptionPane.showMessageDialog(null, errorMsg);
-        }  
-        
-        txtSoilType.setText("");
-        txtSoilStructure.setText("");
-        txtFertilizer.setText("");
+       
+           if (request.getStatus().equalsIgnoreCase("Completed")) {
+        JOptionPane.showMessageDialog(null, "Request already approved!");
+        return;
+    }
+    
+
+    request.setIsCertified(true);
+    request.setStatus("Completed");
+    request.setReceiver(userAccount);
+    request.setResolveDate(new Date());
+    
+    // Save to database to persist the certification processing
+    try {
+        Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+        JOptionPane.showMessageDialog(null, 
+            "✅ Request Approved Successfully!\n\n" +
+            "Farmer: " + request.getSender().getEmployee().getName() + "\n" +
+            "Soil Type: " + request.getOrganicCertification().getSoilType().getValue() + "\n" +
+            "Soil Structure: " + request.getOrganicCertification().getSoilStructure().getValue() + "\n" +
+            "Fertilizer Used: " + (request.getOrganicCertification().isUsedFertilizersInLastThreeYears() ? "Yes" : "No") + "\n\n" +
+            "Organic certification has been granted!",
+            "Certification Approved",
+            JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Warning: Request approved but there was an issue saving to database: " + e.getMessage());
+    }
+    
+    // Clear fields
+    txtSoilType.setText("");
+    txtSoilStructure.setText("");
+    txtFertilizer.setText("");
     }//GEN-LAST:event_btnApproveActionPerformed
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         // TODO add your handling code here:
-        String errorMsg = "";
-        boolean st = false;
-        if((request.getOrganicCertification().getSoilType().getValue().equalsIgnoreCase("Fertile Soil") ||
-            request.getOrganicCertification().getSoilType().getValue().equalsIgnoreCase("Nutricious Soil"))){
-            st = true;
-            System.out.println(st);
-            errorMsg += "Soil Type should be Fertile/Nutricious\n ";
+       if (request.getStatus().equalsIgnoreCase("Rejected")) {
+        JOptionPane.showMessageDialog(null, "Request already rejected!");
+        return;
+    }
+    
+  
+    int confirm = JOptionPane.showConfirmDialog(null,
+        "Are you sure you want to reject this certification request?\n\n" +
+        "Farmer: " + request.getSender().getEmployee().getName() + "\n" +
+        "This action cannot be undone.",
+        "Confirm Rejection",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.WARNING_MESSAGE);
+    
+    if (confirm == JOptionPane.YES_OPTION) {
+       
+        request.setIsCertified(false);
+        request.setStatus("Rejected");
+        request.setReceiver(userAccount);
+        request.setResolveDate(new Date());
+        
+        // Save to database to persist the certification processing
+        try {
+            Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+            JOptionPane.showMessageDialog(null, 
+                "❌ Request Rejected\n\n" +
+                "The organic certification request has been rejected.",
+                "Request Rejected",
+                JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Warning: Request rejected but there was an issue saving to database: " + e.getMessage());
         }
         
-        boolean ss = false;
-        if((request.getOrganicCertification().getSoilStructure().getValue().equalsIgnoreCase("Granular") ||
-            request.getOrganicCertification().getSoilStructure().getValue().equalsIgnoreCase("Crumb"))){
-            ss = true;
-            System.out.println(ss);
-            errorMsg += "Soil Structure should be Granular/Crumb\n";
-        }
-        
-        boolean ifFerti = false;
-        if(!request.getOrganicCertification().isUsedFertilizersInLastThreeYears()){
-            ifFerti = true;
-            System.out.println(ifFerti);
-            errorMsg += "Should not use Fertilizer in last three years";
-        }
-        
-        if(st && ss && ifFerti){
-            JOptionPane.showMessageDialog(null, "Suggestion,you should not reject this request", errorMsg,HEIGHT );
-            JOptionPane.showMessageDialog(null, errorMsg);
-            return;
-        }
-        else if(request.getStatus().equalsIgnoreCase("Rejected"))
-        {
-            JOptionPane.showMessageDialog(null, "Request already rejected!");
-            return;
-        }
-        else
-        {
-            request.setIsCertified(false);
-            request.setStatus("Rejected");
-            request.setReceiver(userAccount);
-            JOptionPane.showMessageDialog(null, "Request Rejected");
-        } 
+        // Clear fields
         txtSoilType.setText("");
         txtSoilStructure.setText("");
         txtFertilizer.setText("");
+    }
     }//GEN-LAST:event_btnRejectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -300,8 +265,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtFertilizer;
     private javax.swing.JTextField txtSoilStructure;

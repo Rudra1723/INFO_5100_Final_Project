@@ -13,42 +13,42 @@ import java.util.ArrayList;
  */
 public class OrganizationDirectory {
     
-    private ArrayList<Organization> organizationList;
+    private ArrayList<Organization> organizationCollection;
 
     public OrganizationDirectory() {
-        organizationList = new ArrayList();
+        organizationCollection = new ArrayList();
     }
 
     public ArrayList<Organization> getOrganizationList() {
-        return organizationList;
+        return organizationCollection;
     }
     
     public Organization createOrganization(Type type){
-        Organization organization = null;
+        Organization newOrganization = null;
         if (type.getValue().equals(Type.Farmer.getValue())){
-            organization = new FarmerOrganization();
-            organizationList.add(organization);
+            newOrganization = new FarmerOrganization();
+            organizationCollection.add(newOrganization);
         }
         else if (type.getValue().equals(Type.Expert.getValue())){
-            organization = new ExpertOrganization();
-            organizationList.add(organization);
+            newOrganization = new ExpertOrganization();
+            organizationCollection.add(newOrganization);
         } 
         else if (type.getValue().equals(Type.Distributor.getValue())){
-            organization = new DistributorOrganization();
-            organizationList.add(organization);
+            newOrganization = new DistributorOrganization();
+            organizationCollection.add(newOrganization);
         }
         else if (type.getValue().equals(Type.Officer.getValue())){
-            organization = new OfficerOrganization();
-            organizationList.add(organization);
+            newOrganization = new OfficerOrganization();
+            organizationCollection.add(newOrganization);
         }
         else if (type.getValue().equals(Type.Customer.getValue())){
-            organization = new CustomerOrganization();
-            organizationList.add(organization);
+            newOrganization = new CustomerOrganization();
+            organizationCollection.add(newOrganization);
         }
         else if (type.getValue().equals(Type.Doctor.getValue())){
-            organization = new DoctorOrganization();
-            organizationList.add(organization);
+            newOrganization = new DoctorOrganization();
+            organizationCollection.add(newOrganization);
         }
-        return organization;
+        return newOrganization;
     }
 }

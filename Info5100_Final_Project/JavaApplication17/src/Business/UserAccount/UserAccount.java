@@ -14,58 +14,58 @@ import Business.WorkQueue.WorkQueue;
  */
 public class UserAccount {
     
-    private String username;
-    private String password;
-    private Employee employee;
-    private Role role;
-    private WorkQueue workQueue;
+    private String accountIdentifier;
+    private String securePassword;
+    private Employee linkedEmployee;
+    private Role assignedRole;
+    private WorkQueue personalWorkQueue;
 
     public UserAccount() {
-        workQueue = new WorkQueue();
+        personalWorkQueue = new WorkQueue();
     }
     
-    
-    
     public String getUsername() {
-        return username;
+        return accountIdentifier;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.accountIdentifier = username;
     }
 
     public String getPassword() {
-        return password;
+        return securePassword;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.securePassword = password;
     }
 
     public Role getRole() {
-        return role;
+        return assignedRole;
     }
 
     public void setEmployee(Employee employee) {
-        this.employee = employee;
+        this.linkedEmployee = employee;
     }
 
     public void setRole(Role role) {
-        this.role = role;
+        this.assignedRole = role;
     }
 
     public Employee getEmployee() {
-        return employee;
+        return linkedEmployee;
     }
 
     public WorkQueue getWorkQueue() {
-        return workQueue;
+        return personalWorkQueue;
     }
-
     
+    public boolean validateCredentials(String username, String password) {
+        return this.accountIdentifier.equals(username) && this.securePassword.equals(password);
+    }
     
     @Override
     public String toString() {
-        return username;
+        return accountIdentifier;
     }
 }

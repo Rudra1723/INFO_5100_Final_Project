@@ -55,7 +55,7 @@ public class FarmerEventsJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.business = business;
-        valueLabel.setText(userAccount.getEmployee().getName());
+//        valueLabel.setText(userAccount.getEmployee().getName());
         populateEventsTable();
     }
 
@@ -69,9 +69,9 @@ public class FarmerEventsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblEvents.getModel();
         
         model.setRowCount(0);
-//        List<WorkRequest> temp = new ArrayList<>();
+
         for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
-//            temp.add(request);
+
             if(request instanceof FarmerEventsWorkRequest){
                 Object[] row = new Object[4];
                 row[0] = request;
@@ -91,17 +91,12 @@ public class FarmerEventsJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEvents = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
-        btnRefresh = new javax.swing.JButton();
-        txtEmail = new javax.swing.JTextField();
+        txtPhoneNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         tblEvents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,17 +140,13 @@ public class FarmerEventsJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
+        jLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 18)); // NOI18N
+        jLabel1.setText("Registartion Page For Events");
 
-        jLabel1.setText("Register for event");
+        jLabel2.setText("Enter Phone Number");
 
-        jLabel2.setText("Enter email address");
-
+        btnRegister.setBackground(new java.awt.Color(0, 153, 102));
+        btnRegister.setForeground(new java.awt.Color(255, 255, 255));
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,111 +156,69 @@ public class FarmerEventsJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel3.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Informational Events");
-
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Register for events");
-
-        valueLabel.setForeground(new java.awt.Color(255, 255, 255));
-        valueLabel.setText("<value>");
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Welcome");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(504, 504, 504)
                 .addComponent(jLabel3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(594, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel3)))
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(45, 45, 45))
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(55, 55, 55))
         );
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Farmer/event.jpg"))); // NOI18N
-        jLabel6.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 152, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(147, 147, 147)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnRegister)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnRefresh))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 64, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(397, 397, 397)
+                        .addComponent(btnRegister)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(707, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -284,112 +233,103 @@ public class FarmerEventsJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-        populateEventsTable();
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
-    public static boolean validate(String emailStr) {
-        if (emailStr == null) {
-            return false;
-        }
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
-    }
-    
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
         int rowCount = tblEvents.getRowCount();
-        
-        if(rowCount==0){
-            JOptionPane.showMessageDialog(null, "There is nothing to Register");
-            return;
-        }
-        
-        int selectedRow = tblEvents.getSelectedRow();
-        FarmerEventsWorkRequest fNew = new FarmerEventsWorkRequest();
-        
-        FarmerEventsWorkRequest request = (FarmerEventsWorkRequest)tblEvents.getValueAt(selectedRow, 0);
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row !");
-            return;
-        }
-        else
-        {
-            if(txtEmail.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Email address cannot be empty");
-                return;
-            }
-            else
-            {
-                boolean isValidEmail = validate(txtEmail.getText());
-                
-                if (!isValidEmail) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid email address");
-                    return;
-                }
-                
-                List<FarmerEventsWorkRequest> temp = new ArrayList<>();
-                for(WorkRequest workRequest :userAccount.getWorkQueue().getWorkRequestList()){
 
-                    if(workRequest instanceof FarmerEventsWorkRequest){
-                        FarmerEventsWorkRequest few = (FarmerEventsWorkRequest) workRequest;
-                        temp.add(few);
-//                        
-                    }
-                }
-                
-                
-                if(temp.size()==0){
-                           fNew.setEventDate(request.getEventDate());
-                           fNew.setEventDesc(request.getEventDesc());
-                           fNew.setEventName(request.getEventName());
-                           fNew.setLocation(request.getLocation());
-                           fNew.setStatus("Registered");
-                           userAccount.getWorkQueue().getWorkRequestList().add(fNew);
-                           JOptionPane.showMessageDialog(null, "You have successfully registered for this event");
-                      
-                }else{
-                    boolean flag = true;
-                    for(FarmerEventsWorkRequest few : temp){
-                        if(few.getEventName().equalsIgnoreCase(request.getEventName())&&few.getStatus().equalsIgnoreCase("Registered")){
-                            JOptionPane.showMessageDialog(null, "Already Registered");   
-                            flag=false;
-                            } 
-                    }
-                    if(flag){
-                            fNew.setEventDate(request.getEventDate());
-                            fNew.setEventDesc(request.getEventDesc());
-                            fNew.setEventName(request.getEventName());
-                            fNew.setLocation(request.getLocation());
-                            fNew.setStatus("Registered");
-                            userAccount.getWorkQueue().getWorkRequestList().add(fNew);
-                            JOptionPane.showMessageDialog(null, "You have successfully registered for this event");
-                           
-                }
-                
-            }
-            
+if(rowCount==0){
+    JOptionPane.showMessageDialog(null, "There is nothing to Register");
+    return;
+}
+
+int selectedRow = tblEvents.getSelectedRow();
+FarmerEventsWorkRequest fNew = new FarmerEventsWorkRequest();
+
+FarmerEventsWorkRequest request = (FarmerEventsWorkRequest)tblEvents.getValueAt(selectedRow, 0);
+if (selectedRow < 0){
+    JOptionPane.showMessageDialog(null, "Please select a row !");
+    return;
+}
+else
+{
+    if(txtPhoneNumber.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Phone number cannot be empty");
+        return;
+    }
+    else
+    {
+        boolean isValidPhoneNumber = validatePhoneNumber(txtPhoneNumber.getText());
         
+        if (!isValidPhoneNumber) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid phone number (10 digits)");
+            return;
         }
+        
+        List<FarmerEventsWorkRequest> temp = new ArrayList<>();
+        for(WorkRequest workRequest :userAccount.getWorkQueue().getWorkRequestList()){
+            if(workRequest instanceof FarmerEventsWorkRequest){
+                FarmerEventsWorkRequest few = (FarmerEventsWorkRequest) workRequest;
+                temp.add(few);                       
+            }
         }
+        
+        
+        if(temp.size()==0){
+               fNew.setEventDate(request.getEventDate());
+               fNew.setEventDesc(request.getEventDesc());
+               fNew.setEventName(request.getEventName());
+               fNew.setLocation(request.getLocation());
+               //fNew.setPhoneNumber(txtPhoneNumber.getText()); // Set phone number
+               fNew.setStatus("Registered");
+               userAccount.getWorkQueue().getWorkRequestList().add(fNew);
+               JOptionPane.showMessageDialog(null, "You have successfully registered for this event");                  
+              
+        }else{
+            boolean flag = true;
+            for(FarmerEventsWorkRequest few : temp){
+                if(few.getEventName().equalsIgnoreCase(request.getEventName())&&few.getStatus().equalsIgnoreCase("Registered")){
+                    JOptionPane.showMessageDialog(null, "Already Registered");   
+                    flag=false;
+                    } 
+            }
+            if(flag){
+                    fNew.setEventDate(request.getEventDate());
+                    fNew.setEventDesc(request.getEventDesc());
+                    fNew.setEventName(request.getEventName());
+                    fNew.setLocation(request.getLocation());
+                    //fNew.setPhoneNumber(txtPhoneNumber.getText()); // Set phone number
+                    fNew.setStatus("Registered");
+                    userAccount.getWorkQueue().getWorkRequestList().add(fNew);
+                    JOptionPane.showMessageDialog(null, "You have successfully registered for this event");
+                    
+                }
+        }
+    }
+
+}
+
+
     }//GEN-LAST:event_btnRegisterActionPerformed
 
+private boolean validatePhoneNumber(String phoneNumber) {
+ 
+    String cleanedNumber = phoneNumber.replaceAll("[\\s\\-\\(\\)]", "");
+
+    String phoneRegex = "^[0-9]{10}$";
+    
+    return cleanedNumber.matches(phoneRegex);
+}
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEvents;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JLabel valueLabel;
+    private javax.swing.JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }

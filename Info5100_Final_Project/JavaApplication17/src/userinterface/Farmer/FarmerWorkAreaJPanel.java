@@ -74,10 +74,6 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
         btnRequestOrganicCertification = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrganicCertificationStatus = new javax.swing.JTable();
@@ -96,48 +92,13 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         btnCheckOrders = new javax.swing.JButton();
         btnCheckEvents = new javax.swing.JButton();
         btnRequestSubsidy = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         btnForum = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        valueLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
-
-        jLabel5.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Organic Farming Made Easy");
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Welcome");
-
-        valueLabel.setForeground(new java.awt.Color(255, 255, 255));
-        valueLabel.setText("<value>");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(765, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(471, 471, 471))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
-        );
-
+        btnRequestOrganicCertification.setBackground(new java.awt.Color(180, 215, 200));
         btnRequestOrganicCertification.setText("Request Organic Certification");
         btnRequestOrganicCertification.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +106,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        tblOrganicCertificationStatus.setBackground(new java.awt.Color(200, 230, 215));
         tblOrganicCertificationStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -155,13 +117,22 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             new String [] {
                 "Farmer's Name", "Status", "Result"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblOrganicCertificationStatus);
         if (tblOrganicCertificationStatus.getColumnModel().getColumnCount() > 0) {
             tblOrganicCertificationStatus.getColumnModel().getColumn(1).setResizable(false);
             tblOrganicCertificationStatus.getColumnModel().getColumn(2).setResizable(false);
         }
 
+        btnSellOrganicCrops.setBackground(new java.awt.Color(180, 215, 200));
         btnSellOrganicCrops.setText("Sell Organic Crops");
         btnSellOrganicCrops.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +140,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        tblCropRequest.setBackground(new java.awt.Color(200, 230, 215));
         tblCropRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -177,7 +149,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Crop Name", "Price", "Quantity", "Days to expire/Shelf life"
+                "Crop Name", "Price ($ per lbs)", "Quantity (in lbs)", "Days to expire"
             }
         ) {
             Class[] types = new Class [] {
@@ -197,6 +169,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblCropRequest);
 
+        btnRequestTreatment.setBackground(new java.awt.Color(180, 215, 200));
         btnRequestTreatment.setText("Request Treatment");
         btnRequestTreatment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +177,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        tblTreatmentRequest.setBackground(new java.awt.Color(200, 230, 215));
         tblTreatmentRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -219,7 +193,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -230,8 +204,10 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblTreatmentRequest.setGridColor(new java.awt.Color(0, 204, 102));
         jScrollPane3.setViewportView(tblTreatmentRequest);
 
+        tblRequestSubsidy.setBackground(new java.awt.Color(200, 230, 215));
         tblRequestSubsidy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -240,14 +216,14 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Subsidy Requested", "Subsidy Granted", "Result", "Status"
+                "Aid Req", "Aid Granted", "Result", "Status"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -260,6 +236,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(tblRequestSubsidy);
 
+        tblCheckOrders.setBackground(new java.awt.Color(200, 230, 215));
         tblCheckOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -275,7 +252,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, true, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -288,6 +265,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(tblCheckOrders);
 
+        tblCheckEvents.setBackground(new java.awt.Color(200, 230, 215));
         tblCheckEvents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -303,7 +281,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, true, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -316,6 +294,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane6.setViewportView(tblCheckEvents);
 
+        btnCheckOrders.setBackground(new java.awt.Color(180, 215, 200));
         btnCheckOrders.setText("Check Orders");
         btnCheckOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,6 +302,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCheckEvents.setBackground(new java.awt.Color(180, 215, 200));
         btnCheckEvents.setText("Check Events");
         btnCheckEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -330,6 +310,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnRequestSubsidy.setBackground(new java.awt.Color(180, 215, 200));
         btnRequestSubsidy.setText("Request Subsidy");
         btnRequestSubsidy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -337,100 +318,140 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 102));
-
-        btnForum.setText("Forum");
+        btnForum.setBackground(new java.awt.Color(180, 215, 200));
+        btnForum.setText("Join Community Forum");
         btnForum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnForumActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(611, 611, 611)
-                .addComponent(btnForum, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
+
+        jLabel3.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("GreenHarvest - Digital Bridge For Farmers");
+
+        valueLabel.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        valueLabel.setForeground(new java.awt.Color(255, 255, 255));
+        valueLabel.setText("<value>");
+
+        jLabel5.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Welcome");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(342, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(60, 60, 60)))
+                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(538, 538, 538))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(btnForum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRequestTreatment)
-                            .addComponent(btnRequestOrganicCertification)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 515, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSellOrganicCrops)
-                            .addComponent(btnRequestSubsidy)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCheckEvents)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(306, 306, 306))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCheckOrders))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSellOrganicCrops))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnRequestTreatment)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCheckOrders)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnCheckEvents))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(btnRequestSubsidy))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnRequestOrganicCertification)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(527, 527, 527)
+                        .addComponent(btnForum, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnRequestTreatment)
+                                    .addComponent(btnSellOrganicCrops)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRequestSubsidy)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRequestOrganicCertification)
-                            .addComponent(btnSellOrganicCrops)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRequestSubsidy)
-                    .addComponent(btnRequestTreatment))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCheckOrders)
-                    .addComponent(btnCheckEvents))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRequestOrganicCertification, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCheckOrders)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCheckEvents)))
+                .addGap(87, 87, 87)
+                .addComponent(btnForum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -489,18 +510,36 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
     public void populateRequestTreatmentTable(){
         DefaultTableModel model = (DefaultTableModel) tblTreatmentRequest.getModel();
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
-            if(request instanceof FarmerTreatmentWorkRequest) {
-                FarmerTreatmentWorkRequest ftwr = (FarmerTreatmentWorkRequest)request;
-
-                 
-                Object[] row = new Object[4];
-                row[0] = ftwr.getDisease().getDiseaseType();
-                row[1] = ftwr.getDisease().getDiseaseCondition();
-                row[2] = ftwr.getTreatmentComments();
-                row[3] = ftwr.getStatus();
-                
-                model.addRow(row);
+        
+        // Find DoctorOrganization
+        Organization doctorOrg = null;
+        for(Network network : business.getNetworkList()){
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                    if(organization instanceof DoctorOrganization){
+                        doctorOrg = organization;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if(doctorOrg != null) {
+            for (WorkRequest request : doctorOrg.getWorkQueue().getWorkRequestList()){
+                if(request instanceof FarmerTreatmentWorkRequest) {
+                    FarmerTreatmentWorkRequest ftwr = (FarmerTreatmentWorkRequest)request;
+                    
+                    // Only show requests from this farmer
+                    if(ftwr.getSender().getUsername().equals(userAccount.getUsername())) {
+                        Object[] row = new Object[4];
+                        row[0] = ftwr.getDisease().getDiseaseType();
+                        row[1] = ftwr.getDisease().getDiseaseCondition();
+                        row[2] = ftwr.getTreatmentComments();
+                        row[3] = ftwr.getStatus();
+                        
+                        model.addRow(row);
+                    }
+                }
             }
         }
     }
@@ -582,6 +621,13 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                     }
                 }
             }
+            
+            // Check if ExpertOrganization exists
+            if(org == null){
+                JOptionPane.showMessageDialog(null, "No Expert Organization found in the system. Please contact system administrator.");
+                return;
+            }
+            
             boolean flag = false;
             OrganicCertificationWorkRequest wr = null;
             for(WorkRequest workRequest : org.getWorkQueue().getWorkRequestList()){
@@ -622,6 +668,13 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
+        
+        // Check if ExpertOrganization exists
+        if(org == null){
+            JOptionPane.showMessageDialog(null, "No Expert Organization found in the system. Please contact system administrator.");
+            return;
+        }
+        
         OrganicCertificationWorkRequest wr = null;
         boolean flag = false;
         List<WorkRequest> temp = new ArrayList<>();
@@ -710,10 +763,9 @@ layout.next(userProcessContainer);
     private javax.swing.JButton btnRequestSubsidy;
     private javax.swing.JButton btnRequestTreatment;
     private javax.swing.JButton btnSellOrganicCrops;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

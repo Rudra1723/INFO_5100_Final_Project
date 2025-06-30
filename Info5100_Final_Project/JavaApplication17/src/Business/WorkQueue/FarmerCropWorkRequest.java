@@ -12,19 +12,19 @@ import Business.Farmer.Farmer;
  * @author rudrapatel
  */
 public class FarmerCropWorkRequest extends WorkRequest {
-    private Crop crop;
+    private Crop requestedCrop;
 
     public Crop getCrop() {
-        return crop;
+        return requestedCrop;
     }
 
     public void setCrop(Crop crop) {
-        this.crop = crop;
+        this.requestedCrop = crop;
     }
     
     @Override
     public String toString() {
-        return this.crop.getCropName();
+        return this.requestedCrop.getCropName();
     }
     
 }

@@ -11,42 +11,41 @@ import Business.UserAccount.UserAccount;
  * @author rudrapatel
  */
 public class Answer {
-    private String text;
-    private boolean isRelevant;
-    private UserAccount farmerAccount;
+    private String answerText;
+    private boolean isAnswerRelevant;
+    private UserAccount answerAuthorAccount;
 
     public Answer() {
-        this.farmerAccount = new UserAccount();
+        this.answerAuthorAccount = new UserAccount();
     }
    
-    
     public String getText() {
-        return text;
+        return answerText;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.answerText = text;
     }
 
     public boolean isIsRelevant() {
-        return isRelevant;
+        return isAnswerRelevant;
     }
 
     public void setIsRelevant(boolean isRelevant) {
-        this.isRelevant = isRelevant;
+        this.isAnswerRelevant = isRelevant;
     }
 
     public UserAccount getFarmerAccount() {
-        return farmerAccount;
+        return answerAuthorAccount;
     }
 
     public void setFarmerAccount(UserAccount farmerAccount) {
-        this.farmerAccount = farmerAccount;
+        this.answerAuthorAccount = farmerAccount;
     }
     
     @Override
     public String toString() {
-        return farmerAccount.getEmployee().getName();
+        return answerAuthorAccount.getEmployee().getName();
     }
     
     

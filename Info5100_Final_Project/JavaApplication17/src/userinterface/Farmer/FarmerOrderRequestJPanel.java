@@ -58,8 +58,6 @@ public class FarmerOrderRequestJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         this.business = business;
-        valueLabel.setText(userAccount.getEmployee().getName());
-        
         populateOrderTable();
     }
     
@@ -88,26 +86,20 @@ public class FarmerOrderRequestJPanel extends javax.swing.JPanel {
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
             if(request instanceof CustomerOrderWorkRequest) {
                 
-               // temp.add(request);
+            
                 Object[] row = new Object[7];
                 row[0] = request;
                 row[1] = ((CustomerOrderWorkRequest) request).getQuantiy();
                 row[2] = ((CustomerOrderWorkRequest) request).getCustomer().getEmployee().getName();
                 row[3] = ((CustomerOrderWorkRequest) request).getAddress();
-                row[4] = ((CustomerOrderWorkRequest) request).getEmail();
+                row[4] = ((CustomerOrderWorkRequest) request).getPhoneNumber();
                 row[5] = ((CustomerOrderWorkRequest) request).getTotalPrice();
                 row[6] = ((CustomerOrderWorkRequest) request).getStatus();
-                
-                
-                
                 model.addRow(row);
             }
             
         }
 
-        
-        
-    
     }
 
     /**
@@ -121,40 +113,28 @@ public class FarmerOrderRequestJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
-        btnConfirmOrder = new javax.swing.JButton();
-        btnFwdLogistics = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btnRejectOrder = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
 
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Crop Name", "Quantity", "Customer Name", "Address", "Email", "Total Price", "Status"
+                "Crop Name", "Quantity", "Customer Name", "Address", "Phone Number", "Total Price", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblOrders.setRowHeight(25);
         jScrollPane1.setViewportView(tblOrders);
-
-        btnConfirmOrder.setText("Confirm Order");
-        btnConfirmOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmOrderActionPerformed(evt);
-            }
-        });
-
-        btnFwdLogistics.setText("Forward to Logistics");
-        btnFwdLogistics.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFwdLogisticsActionPerformed(evt);
-            }
-        });
 
         btnBack.setText("<<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -163,154 +143,52 @@ public class FarmerOrderRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRejectOrder.setText("Reject Order");
-        btnRejectOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRejectOrderActionPerformed(evt);
-            }
-        });
-
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel3.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Orders ");
-
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Recieved Orders");
-
-        valueLabel.setForeground(new java.awt.Color(255, 255, 255));
-        valueLabel.setText("<value>");
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Welcome");
+        jLabel3.setText("Orders");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addComponent(jLabel4)
+                .addGap(504, 504, 504)
+                .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 28, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(47, 47, 47))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnConfirmOrder)
-                                .addGap(184, 184, 184)
-                                .addComponent(btnRejectOrder)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnFwdLogistics)
-                                .addGap(32, 32, 32))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(310, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFwdLogistics, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRejectOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfirmOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnConfirmOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmOrderActionPerformed
-        // TODO add your handling code here:
-          Organization org= null;
-          
-        
-          
-        for (Network network : business.getNetworkList()) {
-                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                        if (enterprise instanceof AgricultureEnterprise) {
-                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                                if (organization instanceof FarmerOrganization) {
-                                    org = organization;
-                                    break;
-                                }
-                            }
-                        }
-
-                    }
-                }
-        
-        int selectedRow = tblOrders.getSelectedRow();
-        
-        int rowCount = tblOrders.getRowCount();
-        
-        if(rowCount==0){
-            JOptionPane.showMessageDialog(null, "There is nothing to Confirm");
-            return;
-        }
-        
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row !");
-            return;
-        }
-        
-       CustomerOrderWorkRequest request = (CustomerOrderWorkRequest)tblOrders.getValueAt(selectedRow, 0);
-       
-      
-       
-       
-       if(request.getStatus().equalsIgnoreCase("Order Placed")){
-           request.setStatus("Confirmed");
-           
-           populateOrderTable();
-           JOptionPane.showMessageDialog(null,"Order is confirmed");
-          
-       }else if(request.getStatus().equalsIgnoreCase("Confirmed")){
-           JOptionPane.showMessageDialog(null,"Order is already confirmed");
-       }else if(request.getStatus().equalsIgnoreCase("Sent to Distributor")){
-           JOptionPane.showMessageDialog(null,"This is already sent to distributors");
-       }else if(request.getStatus().equalsIgnoreCase("Rejected")){
-           JOptionPane.showMessageDialog(null,"This request is rejected");
-       }
-    }//GEN-LAST:event_btnConfirmOrderActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -323,114 +201,12 @@ public class FarmerOrderRequestJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnFwdLogisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFwdLogisticsActionPerformed
-        // TODO add your handling code here:
-        
-        int selectedRow = tblOrders.getSelectedRow();
-        
-        int rowCount = tblOrders.getRowCount();
-        
-        if(rowCount==0){
-            JOptionPane.showMessageDialog(null, "There is nothing to Send");
-            return;
-        }
-        
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row !");
-            return;
-        }
-        CustomerOrderWorkRequest request = (CustomerOrderWorkRequest)tblOrders.getValueAt(selectedRow, 0);
-      
-        Organization org= null;
-        for (Network network : business.getNetworkList()) {
-                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                        if (enterprise instanceof GovernmentEnterprise) {
-                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                                if (organization instanceof DistributorOrganization) {
-                                    org = organization;
-                                    break;
-                                }
-                            }
-                        }
-
-                    }
-                }
-        
-     
-        if(request.getStatus().equalsIgnoreCase("Confirmed")){
-            request.setSender(userAccount);
-            org.getWorkQueue().getWorkRequestList().add(request);
-            request.setStatus("Sent to Distributor");
-            
-            populateOrderTable();
-            JOptionPane.showMessageDialog(null, "Order is sent to distributor");
-            
-        }else if(request.getStatus().equalsIgnoreCase("Sent to Distributor")){
-            JOptionPane.showMessageDialog(null, "This request is already with distributors");
-        }else if(request.getStatus().equalsIgnoreCase("Rejected")){
-            JOptionPane.showMessageDialog(null, "First confirm the order");
-        }else if(request.getStatus().equalsIgnoreCase("Order Placed")){
-            JOptionPane.showMessageDialog(null, "First confirm/reject the order");
-        }
-        
-        
-        
-       
-       
-        
-    }//GEN-LAST:event_btnFwdLogisticsActionPerformed
-
-    private void btnRejectOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectOrderActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = tblOrders.getSelectedRow();
-        
-        int rowCount = tblOrders.getRowCount();
-        
-        if(rowCount==0){
-            JOptionPane.showMessageDialog(null, "There is nothing to Reject");
-            return;
-        }
-        
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row !");
-            return;
-        }
-     
-       CustomerOrderWorkRequest request = (CustomerOrderWorkRequest)tblOrders.getValueAt(selectedRow, 0);
-       
-       if(request.getStatus().equalsIgnoreCase("Order Placed")){
-           request.setStatus("Rejected");
-           populateOrderTable();
-           JOptionPane.showMessageDialog(null, "Order is rejected");
-           
-       }else if(request.getStatus().equalsIgnoreCase("Rejected")){
-           JOptionPane.showMessageDialog(null,"Order is already rejected");
-       }else if(request.getStatus().equalsIgnoreCase("Sent to Distributor")){
-           JOptionPane.showMessageDialog(null,"This is already with Distributors");
-       }else if(request.getStatus().equalsIgnoreCase("Confirmed")){
-          request.setStatus("Rejected");
-          populateOrderTable();
-          JOptionPane.showMessageDialog(null, "Order is rejected");
-          
-          
-       }
-        
-        
-        
-    }//GEN-LAST:event_btnRejectOrderActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnConfirmOrder;
-    private javax.swing.JButton btnFwdLogistics;
-    private javax.swing.JButton btnRejectOrder;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblOrders;
-    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,46 +14,46 @@ import java.util.List;
  * @author rudrapatel
  */
 public class Question {
-    private List<Answer> answersList;
-    private String question;
-    private UserAccount farmerAccount;
+    private List<Answer> answerCollection;
+    private String questionText;
+    private UserAccount questionAuthorAccount;
 
     public Question() {
-        this.answersList = new ArrayList<Answer>();
+        this.answerCollection = new ArrayList<Answer>();
         
     }
 
     public List<Answer> getAnswersList() {
-        return answersList;
+        return answerCollection;
     }
 
     public void setAnswersList(List<Answer> answersList) {
-        this.answersList = answersList;
+        this.answerCollection = answersList;
     }
 
     public String getQuestion() {
-        return question;
+        return questionText;
     }
 
     public void setQuestion(String question) {
-        this.question = question;
+        this.questionText = question;
     }        
 
     public UserAccount getFarmerAccount() {
-        return farmerAccount;
+        return questionAuthorAccount;
     }
 
     public void setFarmerAccount(UserAccount farmerAccount) {
-        this.farmerAccount = farmerAccount;
+        this.questionAuthorAccount = farmerAccount;
     }
 
     public UserAccount AddFarmer(){
-        UserAccount u = new UserAccount();
-        return u;
+        UserAccount newUserAccount = new UserAccount();
+        return newUserAccount;
     }
     
     @Override
     public String toString() {
-        return farmerAccount.getEmployee().getName();
+        return questionAuthorAccount.getEmployee().getName();
     }
 }

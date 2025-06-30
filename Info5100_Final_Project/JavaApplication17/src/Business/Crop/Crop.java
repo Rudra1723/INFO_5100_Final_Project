@@ -11,10 +11,9 @@ import java.util.Date;
  */
 public class Crop {
     private String cropName;
-
-    private Date expiryDate;
-    private int quantity;
-    private double price;
+    private Date cropExpiryDate;
+    private int cropQuantity;
+    private double cropPrice;
     
 
     public String getCropName() {
@@ -26,27 +25,27 @@ public class Crop {
     }
 
     public Date getExpiryDate() {
-        return expiryDate;
+        return cropExpiryDate;
     }
 
     public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
+        this.cropExpiryDate = expiryDate;
     }
 
     public int getQuantity() {
-        return quantity;
+        return cropQuantity;
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.cropQuantity = quantity;
     }
 
     public double getPrice() {
-        return price;
+        return cropPrice;
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.cropPrice = price;
     }
 }
 

@@ -11,21 +11,21 @@ import java.util.ArrayList;
  * @author rudrapatel
  */
 public class EmployeeDirectory {
-    private ArrayList<Employee> employeeList;
+    private ArrayList<Employee> employeeCollection;
 
     public EmployeeDirectory() {
-        employeeList = new ArrayList();
+        employeeCollection = new ArrayList();
     }
 
     public ArrayList<Employee> getEmployeeList() {
-        return employeeList;
+        return employeeCollection;
     }
     
     public Employee createEmployee(String name){
-        Employee employee = new Employee();
-        employee.setName(name);
-        employeeList.add(employee);
-        return employee;
+        Employee newEmployee = new Employee();
+        newEmployee.setName(name);
+        employeeCollection.add(newEmployee);
+        return newEmployee;
     }
     
 }

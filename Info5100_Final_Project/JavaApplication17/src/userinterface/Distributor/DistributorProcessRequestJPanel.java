@@ -7,6 +7,8 @@ package userinterface.Distributor;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CustomerOrderWorkRequest;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Date;
@@ -27,12 +29,21 @@ public class DistributorProcessRequestJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     CustomerOrderWorkRequest request;
     UserAccount userAccount;
-    public DistributorProcessRequestJPanel(JPanel userProcessContainer,CustomerOrderWorkRequest request,UserAccount userAccount) {
+    EcoSystem business;
+    public DistributorProcessRequestJPanel(JPanel userProcessContainer,CustomerOrderWorkRequest request,UserAccount userAccount, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request= request;
         this.userAccount = userAccount;
-        txtFarmerName.setText(request.getSender().getEmployee().getName());
+        this.business = business;
+        
+        // Display farmer name from farmer account
+        if (request.getFarmer() != null && request.getFarmer().getEmployee() != null) {
+            txtFarmerName.setText(request.getFarmer().getEmployee().getName());
+        } else {
+            txtFarmerName.setText("Farmer information not available");
+        }
+        
         txtAddress.setText(request.getAddress());
         txtCustomerName.setText(request.getCustomer().getEmployee().getName());
         txtCropName.setText(request.getCropName());
@@ -59,9 +70,8 @@ public class DistributorProcessRequestJPanel extends javax.swing.JPanel {
         comboStatus = new javax.swing.JComboBox<>();
         btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
 
         jLabel2.setText("Farmer Name:");
 
@@ -81,6 +91,8 @@ public class DistributorProcessRequestJPanel extends javax.swing.JPanel {
 
         comboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Shipped", "Delivered" }));
 
+        btnUpdate.setBackground(new java.awt.Color(0, 153, 102));
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,36 +107,27 @@ public class DistributorProcessRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
+        jPanel9.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel7.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Update Order Shipping Request");
+        jLabel20.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Update status of orders");
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Update orders for Transportation");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addContainerGap(49, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(504, 504, 504)
+                .addComponent(jLabel20)
+                .addContainerGap(594, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel7)
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(46, 46, 46))
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jLabel20)
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -132,17 +135,9 @@ public class DistributorProcessRequestJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(135, 135, 135)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
@@ -156,14 +151,23 @@ public class DistributorProcessRequestJPanel extends javax.swing.JPanel {
                                 .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtCropName, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtCustomerName, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFarmerName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtFarmerName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(315, 315, 315)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(433, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtFarmerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -183,11 +187,9 @@ public class DistributorProcessRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,14 +204,28 @@ if((request.getStatus().equalsIgnoreCase("Sent to Distributor") ||
 }
 if(comboStatus.getSelectedItem().toString().equalsIgnoreCase("Shipped")){
     JOptionPane.showMessageDialog(null, "Status updated to Shipped Successfully");
-    // Email functionality removed
     request.setStatus(comboStatus.getSelectedItem().toString());
     request.setReceiver(userAccount);
+    request.setResolveDate(date);
+    
+    // Save to database to persist the order processing
+    try {
+        Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Warning: Status updated but there was an issue saving to database: " + e.getMessage());
+    }
 }else{
     JOptionPane.showMessageDialog(null, "Status Updated to Delivered Successfully");
-    // Email functionality removed
     request.setStatus(comboStatus.getSelectedItem().toString());
     request.setReceiver(userAccount);
+    request.setResolveDate(date);
+    
+    // Save to database to persist the order processing
+    try {
+        Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Warning: Status updated but there was an issue saving to database: " + e.getMessage());
+    }
 }
 
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -225,19 +241,17 @@ if(comboStatus.getSelectedItem().toString().equalsIgnoreCase("Shipped")){
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> comboStatus;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCropName;
     private javax.swing.JTextField txtCustomerName;

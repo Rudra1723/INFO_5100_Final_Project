@@ -13,24 +13,33 @@ import Business.UserAccount.UserAccount;
 public class CustomerOrderWorkRequest extends WorkRequest{
     private int orderId;
     private String cropName;
-    private int quantiy;
-    private UserAccount customer;
-    private String address;
-    private String email;
-    private double totalPrice;
+    private int orderQuantity;
+    private UserAccount customerAccount;
+    private UserAccount farmerAccount;
+    private String deliveryAddress;
+    private String customerPhoneNumber;
+    private double orderTotalPrice;
+    private static int orderCounter = 1;
+
+    public CustomerOrderWorkRequest() {
+        orderId = orderCounter;
+        orderCounter++;
+    }
+
+    public String getPhoneNumber() {
+        return customerPhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.customerPhoneNumber = phoneNumber;
+    }
 
     public double getTotalPrice() {
-        return totalPrice;
+        return orderTotalPrice;
     }
 
     public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-    private static int count = 1;
-
-    public CustomerOrderWorkRequest() {
-        orderId = count;
-        count++;
+        this.orderTotalPrice = totalPrice;
     }
 
     public int getOrderId() {
@@ -50,47 +59,45 @@ public class CustomerOrderWorkRequest extends WorkRequest{
     }
 
     public int getQuantiy() {
-        return quantiy;
+        return orderQuantity;
     }
 
-    public void setQuantiy(int quantiy) {
-        this.quantiy = quantiy;
+    public void setQuantiy(int quantity) {
+        this.orderQuantity = quantity;
     }
 
     public UserAccount getCustomer() {
-        return customer;
+        return customerAccount;
     }
 
     public void setCustomer(UserAccount customerName) {
-        this.customer = customerName;
+        this.customerAccount = customerName;
+    }
+
+    public UserAccount getFarmer() {
+        return farmerAccount;
+    }
+
+    public void setFarmer(UserAccount farmerAccount) {
+        this.farmerAccount = farmerAccount;
     }
 
     public static int getCount() {
-        return count;
+        return orderCounter;
     }
 
     public static void setCount(int count) {
-        CustomerOrderWorkRequest.count = count;
+        CustomerOrderWorkRequest.orderCounter = count;
     }
 
     public String getAddress() {
-        return address;
+        return deliveryAddress;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.deliveryAddress = address;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    
-    
     @Override
     public String toString() {
         return String.valueOf(this.cropName);

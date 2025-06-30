@@ -74,7 +74,7 @@ public class FarmerRequestSubsidyJPanel extends javax.swing.JPanel {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -157,7 +157,6 @@ public class FarmerRequestSubsidyJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblFarmerSubsidyRequest.getModel();
         
         model.setRowCount(0);
-//        List<WorkRequest> temp = new ArrayList<>();
         Organization org = null;
             for(Network network : business.getNetworkList()){
                 for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
@@ -170,7 +169,6 @@ public class FarmerRequestSubsidyJPanel extends javax.swing.JPanel {
                 }
             }
         for(WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-//            temp.add(request);
             Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getSender().getEmployee().getName();
@@ -193,7 +191,7 @@ public class FarmerRequestSubsidyJPanel extends javax.swing.JPanel {
 
         request.setStatus("Processing");
 
-        ProcessSubsidyJPanel processSubsidyJPanel = new ProcessSubsidyJPanel(userProcessContainer, request);
+        ProcessSubsidyJPanel processSubsidyJPanel = new ProcessSubsidyJPanel(userProcessContainer, request, business);
         userProcessContainer.add("processSubsidyJPanel", processSubsidyJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

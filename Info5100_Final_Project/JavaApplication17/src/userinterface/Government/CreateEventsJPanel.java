@@ -6,7 +6,6 @@
 package userinterface.Government;
 
 import Business.EcoSystem;
-//import static Business.EcoSystem.business;
 import Business.Enterprise.AgricultureEnterprise;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -45,11 +44,7 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.business = business;
         this.organization = (OfficerOrganization)organization;
-        //btnSubmit.setBackground(Color.BLUE);
-        //btnSubmit.setOpaque(true);
         dateChooserEvent.getJCalendar().setMinSelectableDate(new Date());
-        
-//        dateChooserManufacture.setMinSelectableDate(new Date());
         dateChooserEvent.setMinSelectableDate(new Date());
     }
 
@@ -71,73 +66,34 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtEventLocation = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        btnSubmit = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("Event Name:");
 
         jLabel3.setText("Event Description:");
 
+        txtEventDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEventDescActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Event Date:");
 
         jLabel6.setText("Event Location:");
-
-        btnSubmit.setText("Submit");
-        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+            .addGap(0, 322, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(0, 153, 102));
-
-        jLabel7.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Create Informational Event");
-
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Events to Educate farmers about Organic farming");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(287, 287, 287))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addContainerGap(42, Short.MAX_VALUE))
+            .addGap(0, 62, Short.MAX_VALUE)
         );
 
         btnBack.setText("<<Back");
@@ -146,6 +102,38 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+
+        btnSubmit.setBackground(new java.awt.Color(0, 153, 102));
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 102));
+
+        jLabel5.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Create Informational Event");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(504, 504, 504)
+                .addComponent(jLabel5)
+                .addContainerGap(594, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(55, 55, 55))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -157,11 +145,6 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2)
@@ -172,16 +155,25 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
                                     .addComponent(txtEventDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dateChooserEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEventLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 328, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                    .addComponent(txtEventLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(143, 143, 143)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -189,31 +181,34 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEventDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateChooserEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEventLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateChooserEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEventLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(300, 300, 300))
         );
     }// </editor-fold>//GEN-END:initComponents
     
      public boolean validateStrings(String name){
-        
-        Pattern pattern = Pattern.compile("[a-zA-Z ]*");
-        Matcher matcher = pattern.matcher(name);
-         if (!matcher.matches()) {
-            return false;
-      }
-        return true;
+
+    Pattern pattern = Pattern.compile("[a-zA-Z0-9 .,#-]*");
+    Matcher matcher = pattern.matcher(name);
+    if (!matcher.matches()) {
+        return false;
     }
+    return true;
+}
     
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
@@ -251,7 +246,7 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
         }
         
         if(!validateStrings(txtEventLocation.getText())){
-            JOptionPane.showMessageDialog(null, "Please Enter valid string value", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please Enter valid string value For location", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -288,7 +283,15 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
             if(userAccount.getWorkQueue().getWorkRequestList().size() == 0){
                 org.getWorkQueue().getWorkRequestList().add(farmerEventsWorkRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(farmerEventsWorkRequest);
-                JOptionPane.showMessageDialog(null, "You have created event successfully");
+                
+                // Save to database to persist the event
+                try {
+                    Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+                    JOptionPane.showMessageDialog(null, "You have created event successfully");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Warning: Event created but there was an issue saving to database: " + e.getMessage());
+                }
+                
                 txtEventName.setText("");
                 txtEventDesc.setText("");
                 txtEventLocation.setText("");
@@ -299,14 +302,6 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
                 for(WorkRequest wr : org.getWorkQueue().getWorkRequestList()){
                     if(wr instanceof FarmerEventsWorkRequest){
                         FarmerEventsWorkRequest farmerEvent = (FarmerEventsWorkRequest)wr;
-//                        Date d = farmerEvent.getEventDate();
-//                        
-//                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//                        String dat = formatter.format(d);
-//                        Date d1 = farmerEventsWorkRequest.getEventDate();
-//                        String dat1 = formatter.format(d1);
-   // return formatter.parse(formatter.format(new Date()));
-   //&&(dat.equals(dat1))
                         if((farmerEvent.getEventName().equalsIgnoreCase(farmerEventsWorkRequest.getEventName())&&
                                 (farmerEvent.getLocation().equalsIgnoreCase(farmerEventsWorkRequest.getLocation())))){
                             JOptionPane.showMessageDialog(null, "Cannot create even with same name,location ");
@@ -317,7 +312,15 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
                
                 org.getWorkQueue().getWorkRequestList().add(farmerEventsWorkRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(farmerEventsWorkRequest);
-                JOptionPane.showMessageDialog(null, "You have created event successfully");
+                
+                // Save to database to persist the event
+                try {
+                    Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+                    JOptionPane.showMessageDialog(null, "You have created event successfully");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Warning: Event created but there was an issue saving to database: " + e.getMessage());
+                }
+                
                 txtEventName.setText("");
                 txtEventDesc.setText("");
                 txtEventLocation.setText("");
@@ -334,6 +337,9 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void txtEventDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEventDescActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEventDescActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -342,11 +348,10 @@ public class CreateEventsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtEventDesc;
     private javax.swing.JTextField txtEventLocation;
     private javax.swing.JTextField txtEventName;

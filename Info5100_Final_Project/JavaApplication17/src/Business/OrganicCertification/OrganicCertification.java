@@ -13,11 +13,11 @@ import Business.UserAccount.UserAccount;
  */
 public class OrganicCertification {
     
-    private SoilType soilType;
-    private SoilStructure soilStructure;
-    private boolean usedFertilizersInLastThreeYears;
+    private SoilType certificationSoilType;
+    private SoilStructure certificationSoilStructure;
+    private boolean hasUsedFertilizersInLastThreeYears;
 
-    private UserAccount userAccount;
+    private UserAccount certificationUserAccount;
     
     public OrganicCertification(){
 
@@ -30,24 +30,24 @@ public class OrganicCertification {
         Granular("Granular"),
         Plate("Plate-Like"),
         Crumb("Crumb");
-        private String value;
+        private String structureValue;
 
         private SoilStructure(String value) {
-            this.value = value;
+            this.structureValue = value;
         }
 
         public String getValue() {
-            return value;
+            return structureValue;
         }
 
         @Override
         public String toString() {
-            return value;
+            return structureValue;
         }
     }
 
     public SoilStructure getSoilStructure() {
-        return soilStructure;
+        return certificationSoilStructure;
     } 
     
     
@@ -57,48 +57,48 @@ public class OrganicCertification {
         Nutricious("Nutricious Soil"),
         Slit("Slit Soil");
 
-        private String value;
+        private String typeValue;
 
         private SoilType(String value) {
-            this.value = value;
+            this.typeValue = value;
         }
 
         public String getValue() {
-            return value;
+            return typeValue;
         }
 
         @Override
         public String toString() {
-            return value;
+            return typeValue;
         }
     }
 
     public SoilType getSoilType() {
-        return soilType;
+        return certificationSoilType;
     }   
 
     public void setSoilType(SoilType soilType) {
-        this.soilType = soilType;
+        this.certificationSoilType = soilType;
     }
 
     public void setSoilStructure(SoilStructure soilStructure) {
-        this.soilStructure = soilStructure;
+        this.certificationSoilStructure = soilStructure;
     }
 
     public boolean isUsedFertilizersInLastThreeYears() {
-        return usedFertilizersInLastThreeYears;
+        return hasUsedFertilizersInLastThreeYears;
     }
     
     public void setUsedFertilizersInLastThreeYears(boolean usedFertilizersInLastThreeYears) {
-        this.usedFertilizersInLastThreeYears = usedFertilizersInLastThreeYears;
+        this.hasUsedFertilizersInLastThreeYears = usedFertilizersInLastThreeYears;
     }
 
     public UserAccount getUserAccount() {
-        return userAccount;
+        return certificationUserAccount;
     }
 
     public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+        this.certificationUserAccount = userAccount;
     }
         
 }

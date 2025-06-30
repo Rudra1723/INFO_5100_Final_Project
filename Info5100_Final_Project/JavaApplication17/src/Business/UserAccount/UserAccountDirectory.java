@@ -16,37 +16,37 @@ import java.util.ArrayList;
  */
 public class UserAccountDirectory {
     
-     private ArrayList<UserAccount> userAccountList;
+     private ArrayList<UserAccount> userAccountCollection;
 
     public UserAccountDirectory() {
-        userAccountList = new ArrayList();
+        userAccountCollection = new ArrayList();
     }
 
     public ArrayList<UserAccount> getUserAccountList() {
-        return userAccountList;
+        return userAccountCollection;
     }
     
     public UserAccount authenticateUser(String username, String password){
-        for (UserAccount ua : userAccountList)
-            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)){
-                return ua;
+        for (UserAccount currentUserAccount : userAccountCollection)
+            if (currentUserAccount.getUsername().equals(username) && currentUserAccount.getPassword().equals(password)){
+                return currentUserAccount;
             }
         return null;
     }
     
     public UserAccount createUserAccount(String username, String password, Employee employee, Role role){
-        UserAccount userAccount = new UserAccount();
-        userAccount.setUsername(username);
-        userAccount.setPassword(password);
-        userAccount.setEmployee(employee);
-        userAccount.setRole(role);
-        userAccountList.add(userAccount);
-        return userAccount;
+        UserAccount newUserAccount = new UserAccount();
+        newUserAccount.setUsername(username);
+        newUserAccount.setPassword(password);
+        newUserAccount.setEmployee(employee);
+        newUserAccount.setRole(role);
+        userAccountCollection.add(newUserAccount);
+        return newUserAccount;
     }
     
     public boolean checkIfUsernameIsUnique(String username){
-        for (UserAccount ua : userAccountList){
-            if (ua.getUsername().equals(username))
+        for (UserAccount currentUserAccount : userAccountCollection){
+            if (currentUserAccount.getUsername().equals(username))
                 return false;
         }
         return true;

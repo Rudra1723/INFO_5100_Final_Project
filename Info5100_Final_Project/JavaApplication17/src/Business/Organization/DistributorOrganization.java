@@ -21,9 +21,9 @@ public class DistributorOrganization extends Organization{
 
     @Override
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList();
-        roles.add(new DistributorRole());
-        return roles;
+        ArrayList<Role> supportedRoles = new ArrayList();
+        supportedRoles.add(new DistributorRole());
+        return supportedRoles;
     }
      
    

@@ -13,20 +13,18 @@ import java.util.List;
  */
 public class Forum {
     
-    private List<Question> questionList;
+    private List<Question> questionCollection;
 
     public Forum() {
-        questionList= new ArrayList<Question>();
+        questionCollection = new ArrayList<Question>();
     }
 
     public List<Question> getQuestionList() {
-        return questionList;
+        return questionCollection;
     }
 
     public void setQuestionList(List<Question> questionList) {
-        this.questionList = questionList;
+        this.questionCollection = questionList;
     }
-    
 
-    
 }

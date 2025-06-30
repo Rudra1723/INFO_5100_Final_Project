@@ -65,14 +65,6 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
             
             model.addRow(row);
         }
-//                System.out.println("Before Temp: " + temp);
-//                System.out.println(userAccount.getWorkQueue().getWorkRequestList().size());
-//                System.out.println(labOrganization.getWorkQueue().getWorkRequestList().size());
-////                userAccount.getWorkQueue().getWorkRequestList().remove(temp.size()-1);
-//                labOrganization.getWorkQueue().getWorkRequestList().remove(temp.size()-1);
-//                for(WorkRequest w: labOrganization.getWorkQueue().getWorkRequestList()){
-//                    System.out.println("Type"+ w);
-//                }
     }
 
     /**
@@ -88,10 +80,8 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
         tblCertificationRequest = new javax.swing.JTable();
         assignJButton = new javax.swing.JButton();
         btnProcess = new javax.swing.JButton();
-        refreshJButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -112,7 +102,7 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -134,6 +124,7 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 620, 230));
 
+        assignJButton.setBackground(new java.awt.Color(180, 215, 200));
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +133,7 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 510, -1, 50));
 
+        btnProcess.setBackground(new java.awt.Color(180, 215, 200));
         btnProcess.setText("View Request");
         btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,26 +142,17 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 510, -1, 50));
 
-        refreshJButton.setText("Refresh");
-        refreshJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshJButtonActionPerformed(evt);
-            }
-        });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 250, 120, 50));
-
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel3.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Expert Work Area");
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Check Organic Certification Requests");
-
+        valueLabel.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
         valueLabel.setForeground(new java.awt.Color(255, 255, 255));
         valueLabel.setText("<value>");
 
+        jLabel5.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Welcome");
 
@@ -178,36 +161,29 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(504, 504, 504)
                 .addComponent(jLabel3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(688, Short.MAX_VALUE))
+                .addContainerGap(594, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(45, 45, 45))
+                .addGap(23, 23, 23))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 110));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
@@ -278,7 +254,7 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
      
         request.setStatus("Processing");
         
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, request,userAccount);
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, request,userAccount, business);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -287,19 +263,13 @@ public class ExpertWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnProcessActionPerformed
 
-    private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
-        populateTable();
-    }//GEN-LAST:event_refreshJButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
     private javax.swing.JButton btnProcess;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refreshJButton;
     private javax.swing.JTable tblCertificationRequest;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

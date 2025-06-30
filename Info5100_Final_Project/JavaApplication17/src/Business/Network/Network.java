@@ -11,18 +11,19 @@ import Business.Enterprise.EnterpriseDirectory;
  * @author rudrapatel
  */
 public class Network {
-    private String name;
+    private String networkIdentifier;
     private EnterpriseDirectory enterpriseDirectory;
     
     public Network(){
-        enterpriseDirectory=new EnterpriseDirectory();
+        enterpriseDirectory = new EnterpriseDirectory();
     }
+    
     public String getName() {
-        return name;
+        return networkIdentifier;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.networkIdentifier = name;
     }
 
     public EnterpriseDirectory getEnterpriseDirectory() {
@@ -31,7 +32,7 @@ public class Network {
     
     @Override
     public String toString(){
-        return name;
+        return networkIdentifier;
     }
     
 }

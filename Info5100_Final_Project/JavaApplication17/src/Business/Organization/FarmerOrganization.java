@@ -15,25 +15,25 @@ import java.util.ArrayList;
  */
 public class FarmerOrganization extends Organization{
 
-    private Forum forum;
+    private Forum farmerForum;
     public FarmerOrganization() {
         super(Type.Farmer.getValue());
-        this.forum=new Forum();
+        this.farmerForum = new Forum();
     }
     
     @Override
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList();
-        roles.add(new FarmerRole());
-        return roles;
+        ArrayList<Role> supportedRoles = new ArrayList();
+        supportedRoles.add(new FarmerRole());
+        return supportedRoles;
     }
 
     public Forum getForum() {
-        return this.forum;
+        return this.farmerForum;
     }
 
     public void setForum(Forum forum) {
-        this.forum = forum;
+        this.farmerForum = forum;
     }
      
     

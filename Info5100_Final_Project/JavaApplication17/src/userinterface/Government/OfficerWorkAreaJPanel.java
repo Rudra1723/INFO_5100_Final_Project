@@ -70,6 +70,8 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
         btnViewRequest = new javax.swing.JButton();
         btnCreateEvent = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        valueLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         tblFarmerSubsidyRequest.setModel(new javax.swing.table.DefaultTableModel(
@@ -87,7 +89,7 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -101,6 +103,7 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
         tblFarmerSubsidyRequest.setRowHeight(25);
         jScrollPane2.setViewportView(tblFarmerSubsidyRequest);
 
+        btnAssignToMe.setBackground(new java.awt.Color(180, 215, 200));
         btnAssignToMe.setText("Assign to me");
         btnAssignToMe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +111,7 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnViewRequest.setBackground(new java.awt.Color(180, 215, 200));
         btnViewRequest.setText("View Request");
         btnViewRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +119,8 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCreateEvent.setBackground(new java.awt.Color(0, 153, 102));
+        btnCreateEvent.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateEvent.setText("Create Event");
         btnCreateEvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,69 +130,87 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel5.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Officer Work Area");
+
+        valueLabel.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        valueLabel.setForeground(new java.awt.Color(255, 255, 255));
+        valueLabel.setText("<value>");
+
+        jLabel5.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Officer Work Area");
+        jLabel5.setText("Welcome");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(504, 504, 504)
+                .addComponent(jLabel3)
+                .addContainerGap(594, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnAssignToMe)
-                                .addGap(129, 129, 129)
-                                .addComponent(btnViewRequest)
-                                .addGap(166, 166, 166)
-                                .addComponent(btnCreateEvent)))
-                        .addGap(0, 126, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnViewRequest))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(328, 328, 328)
+                        .addComponent(btnCreateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnViewRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAssignToMe, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(btnCreateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(152, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)tblFarmerSubsidyRequest.getModel();
-        
-        
-        
+   
         model.setRowCount(0);
-//        List<WorkRequest> temp = new ArrayList<>();
         Organization org = null;
             for(Network network : business.getNetworkList()){
                 for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
@@ -202,7 +226,6 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         for(WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-//            temp.add(request);
             Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getSender().getEmployee().getName();
@@ -277,14 +300,12 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
                 
                 request.setStatus("Completed");
                 System.out.println("Loss "+request.getRequestedSubsidyValue());
-                ProcessSubsidyJPanel processSubsidyJPanel = new ProcessSubsidyJPanel(userProcessContainer, request);
+                ProcessSubsidyJPanel processSubsidyJPanel = new ProcessSubsidyJPanel(userProcessContainer, request, business);
                 userProcessContainer.add("processSubsidyJPanel", processSubsidyJPanel);
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
             }
-           
-        
-       
+  
     }//GEN-LAST:event_btnViewRequestActionPerformed
 
     private void btnCreateEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEventActionPerformed
@@ -300,9 +321,11 @@ public class OfficerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAssignToMe;
     private javax.swing.JButton btnCreateEvent;
     private javax.swing.JButton btnViewRequest;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblFarmerSubsidyRequest;
+    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

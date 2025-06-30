@@ -13,19 +13,40 @@ import Business.UserAccount.UserAccount;
  * @author rudrapatel
  */
 public class ConfigureASystem {
+    
     public static EcoSystem configure(){
-        
-        EcoSystem system = EcoSystem.getInstance();
-        
-       
-        
-        
-        Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin");
-        
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
-        
-        return system;
+        return initializeSystemWithDefaultConfiguration();
     }
     
+    private static EcoSystem initializeSystemWithDefaultConfiguration(){
+        EcoSystem systemInstance = EcoSystem.obtainInstance();
+        
+        // Create system administrator employee
+        Employee systemAdministrator = systemInstance.getEmployeeDirectory().createEmployee("System Administrator");
+        
+        // Create system administrator user account
+        UserAccount adminUserAccount = systemInstance.getUserAccountDirectory().createUserAccount(
+            "sysadmin", 
+            "sysadmin", 
+            systemAdministrator, 
+            new SystemAdminRole()
+        );
+        
+        return systemInstance;
+    }
     
+    public static EcoSystem configureWithCustomSettings(String adminUsername, String adminPassword) {
+        EcoSystem systemInstance = EcoSystem.obtainInstance();
+        
+        Employee customAdmin = systemInstance.getEmployeeDirectory().createEmployee("Custom Administrator");
+        
+        UserAccount customAdminAccount = systemInstance.getUserAccountDirectory().createUserAccount(
+            adminUsername, 
+            adminPassword, 
+            customAdmin, 
+            new SystemAdminRole()
+        );
+        
+        return systemInstance;
+    }
 }

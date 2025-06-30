@@ -6,10 +6,14 @@
 package userinterface.Doctor;
 
 import Business.WorkQueue.FarmerTreatmentWorkRequest;
+import Business.EcoSystem;
+import Business.DB4OUtil.DB4OUtil;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.util.Date;
 
 /**
  *
@@ -19,13 +23,17 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     FarmerTreatmentWorkRequest request;
+    EcoSystem business;
+    UserAccount userAccount;
     /**
      * Creates new form ProcessTreatmentWorkRequestJPanel
      */
-    public ProcessTreatmentWorkRequestJPanel(JPanel userProcessContainer, FarmerTreatmentWorkRequest request) {
+    public ProcessTreatmentWorkRequestJPanel(JPanel userProcessContainer, FarmerTreatmentWorkRequest request, EcoSystem business, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
+        this.business = business;
+        this.userAccount = userAccount;
         txtDiseaseType.setText(request.getDisease().getDiseaseType().toString());
         txtDiseaseCondition.setText(request.getDisease().getDiseaseCondition().toString());
 
@@ -47,16 +55,17 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
         txtDiseaseType = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         txtDiseaseCondition = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtTreatmentComments = new java.awt.TextArea();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("Disease Type:");
 
         jLabel3.setText("Disease Condition:");
 
+        btnReject.setBackground(new java.awt.Color(255, 51, 51));
+        btnReject.setForeground(new java.awt.Color(255, 255, 255));
         btnReject.setText("Reject Request");
         btnReject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +73,8 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnApprove.setBackground(new java.awt.Color(0, 153, 102));
+        btnApprove.setForeground(new java.awt.Color(255, 255, 255));
         btnApprove.setText("Approve Request");
         btnApprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,56 +93,48 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
 
         txtDiseaseCondition.setEditable(false);
 
+        jLabel1.setText("Treatment & Comments:");
+
+        txtTreatmentComments.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel4.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Treatment Work Area");
-
+        jLabel5.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Provide treatment for farmers");
+        jLabel5.setText("Cure With Care");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(504, 504, 504)
                 .addComponent(jLabel5)
-                .addContainerGap(295, Short.MAX_VALUE))
+                .addContainerGap(594, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4)
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(27, 89, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(45, 45, 45))
+                .addGap(55, 55, 55))
         );
-
-        jLabel1.setText("Treatment & Comments:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addGap(324, 324, 324)
                         .addComponent(btnApprove)
                         .addGap(45, 45, 45)
                         .addComponent(btnReject, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(171, 171, 171)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -148,17 +151,21 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtDiseaseCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDiseaseType, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtDiseaseType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addComponent(txtDiseaseType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtDiseaseCondition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,9 +176,8 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReject, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -183,14 +189,23 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
             request.setIsTreated(true);
             request.setStatus("Completed");
             request.setTreatmentComments(txtTreatmentComments.getText());
-            JOptionPane.showMessageDialog(null, "Request Approved");
+            request.setResolveDate(new Date());
+            request.setReceiver(userAccount);
+            
+            // Save to database to persist the treatment processing
+            try {
+                Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+                JOptionPane.showMessageDialog(null, "Request Approved");
 
-            txtDiseaseCondition.setEditable(false);
-            txtDiseaseCondition.setEnabled(false);
-            txtDiseaseType.setEnabled(false);
-            txtDiseaseType.setEditable(false);
-            txtTreatmentComments.setEnabled(false);
-            txtTreatmentComments.setEditable(false); 
+                txtDiseaseCondition.setEditable(false);
+                txtDiseaseCondition.setEnabled(false);
+                txtDiseaseType.setEnabled(false);
+                txtDiseaseType.setEditable(false);
+                txtTreatmentComments.setEnabled(false);
+                txtTreatmentComments.setEditable(false); 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Warning: Request processed but there was an issue saving to database: " + e.getMessage());
+            }
         }
         
     }//GEN-LAST:event_btnApproveActionPerformed
@@ -203,14 +218,23 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
             request.setIsTreated(false);
             request.setStatus("Rejected");
             request.setTreatmentComments(txtTreatmentComments.getText());
-            JOptionPane.showMessageDialog(null, "Request Rejected");
+            request.setResolveDate(new Date());
+            request.setReceiver(userAccount);
+            
+            // Save to database to persist the treatment processing
+            try {
+                Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+                JOptionPane.showMessageDialog(null, "Request Rejected");
 
-            txtDiseaseCondition.setEditable(false);
-            txtDiseaseCondition.setEnabled(false);
-            txtDiseaseType.setEnabled(false);
-            txtDiseaseType.setEditable(false);
-            txtTreatmentComments.setEnabled(false);
-            txtTreatmentComments.setEditable(false);
+                txtDiseaseCondition.setEditable(false);
+                txtDiseaseCondition.setEnabled(false);
+                txtDiseaseType.setEnabled(false);
+                txtDiseaseType.setEditable(false);
+                txtTreatmentComments.setEnabled(false);
+                txtTreatmentComments.setEditable(false);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Warning: Request processed but there was an issue saving to database: " + e.getMessage());
+            }
         }
         
     }//GEN-LAST:event_btnRejectActionPerformed
@@ -226,7 +250,6 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnBack;
@@ -234,7 +257,6 @@ public class ProcessTreatmentWorkRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtDiseaseCondition;

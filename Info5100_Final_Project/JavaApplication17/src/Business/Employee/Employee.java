@@ -9,30 +9,29 @@ package Business.Employee;
  * @author rudrapatel
  */
 public class Employee {
-     private String name;
-    private int id;
-    private static int count = 1;
+     private String fullName;
+    private int personnelId;
+    private static int globalEmployeeCounter = 1;
 
     public Employee() {
-        id = count;
-        count++;
+        personnelId = globalEmployeeCounter;
+        globalEmployeeCounter++;
     }
 
     public int getId() {
-        return id;
+        return personnelId;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.fullName = name;
     }
 
-    
     public String getName() {
-        return name;
+        return fullName;
     }
 
     @Override
     public String toString() {
-        return name;
+        return fullName;
     }
 }

@@ -16,12 +16,12 @@ import java.util.ArrayList;
  */
 public abstract class Organization {
 
-    private String name;
-    private WorkQueue workQueue;
-    private EmployeeDirectory employeeDirectory;
-    private UserAccountDirectory userAccountDirectory;
-    private int organizationID;
-    private static int counter=0;
+    private String organizationalName;
+    private WorkQueue taskQueue;
+    private EmployeeDirectory staffDirectory;
+    private UserAccountDirectory accountRegistry;
+    private int organizationalId;
+    private static int organizationalCounter = 0;
     
     public enum Type{
         Admin("Admin Organization"),
@@ -32,57 +32,57 @@ public abstract class Organization {
         Customer("Customer Organization"),
         Doctor("Doctor Organization");
         
-        private String value;
-        private Type(String value) {
-            this.value = value;
+        private String typeDescription;
+        private Type(String description) {
+            this.typeDescription = description;
         }
         public String getValue() {
-            return value;
+            return typeDescription;
         }
     }
 
     public Organization(String name) {
-        this.name = name;
-        workQueue = new WorkQueue();
-        employeeDirectory = new EmployeeDirectory();
-        userAccountDirectory = new UserAccountDirectory();
-        organizationID = counter;
-        ++counter;
+        this.organizationalName = name;
+        taskQueue = new WorkQueue();
+        staffDirectory = new EmployeeDirectory();
+        accountRegistry = new UserAccountDirectory();
+        organizationalId = organizationalCounter;
+        ++organizationalCounter;
     }
 
     public abstract ArrayList<Role> getSupportedRole();
     
     public UserAccountDirectory getUserAccountDirectory() {
-        return userAccountDirectory;
+        return accountRegistry;
     }
 
     public int getOrganizationID() {
-        return organizationID;
+        return organizationalId;
     }
 
     public EmployeeDirectory getEmployeeDirectory() {
-        return employeeDirectory;
+        return staffDirectory;
     }
     
     public String getName() {
-        return name;
+        return organizationalName;
     }
 
     public WorkQueue getWorkQueue() {
-        return workQueue;
+        return taskQueue;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.organizationalName = name;
     }
 
     public void setWorkQueue(WorkQueue workQueue) {
-        this.workQueue = workQueue;
+        this.taskQueue = workQueue;
     }
 
     @Override
     public String toString() {
-        return name;
+        return organizationalName;
     }
     
     

@@ -16,10 +16,10 @@ public abstract class Enterprise extends Organization{
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
 
-     public Enterprise(String name,EnterpriseType type){
+     public Enterprise(String name, EnterpriseType type){
         super(name);
-        this.enterpriseType=type;
-        organizationDirectory=new OrganizationDirectory();
+        this.enterpriseType = type;
+        organizationDirectory = new OrganizationDirectory();
     }
     
     
@@ -32,17 +32,17 @@ public abstract class Enterprise extends Organization{
         Government("Government"),
         Hospital("Hospital");
         
-        private String value;
+        private String typeValue;
         
         private EnterpriseType(String value){
-            this.value=value;
+            this.typeValue = value;
         }
         public String getValue() {
-            return value;
+            return typeValue;
         }
         @Override
         public String toString(){
-        return value;
+        return typeValue;
     }
     }
 

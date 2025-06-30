@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 public class FarmerRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new FarmerWorkAreaJPanel(userProcessContainer, account, (FarmerOrganization)organization, enterprise,business);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem ecoSystem) {
+        return new FarmerWorkAreaJPanel(userProcessContainer, userAccount, (FarmerOrganization)organization, enterprise, ecoSystem);
     }
     
     

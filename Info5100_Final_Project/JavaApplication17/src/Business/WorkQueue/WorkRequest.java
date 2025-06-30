@@ -13,68 +13,68 @@ import java.util.Date;
  */
 public abstract class WorkRequest {
 
-    private String message;
-    private UserAccount sender;
-    private UserAccount receiver;
-    private String status;
-    private Date requestDate;
-    private Date resolveDate;
-    
+    private String requestDescription;
+    private UserAccount requestInitiator;
+    private UserAccount requestHandler;
+    private String requestStatus;
+    private Date requestSubmissionDate;
+    private Date requestCompletionDate;
+
     public WorkRequest(){
-        requestDate = new Date();
+        requestSubmissionDate = new Date();
     }
 
     public String getMessage() {
-        return message;
+        return requestDescription;
     }
 
     public void setMessage(String message) {
-        this.message = message;
+        this.requestDescription = message;
     }
 
     public UserAccount getSender() {
-        return sender;
+        return requestInitiator;
     }
 
     public void setSender(UserAccount sender) {
-        this.sender = sender;
+        this.requestInitiator = sender;
     }
 
     public UserAccount getReceiver() {
-        return receiver;
+        return requestHandler;
     }
 
     public void setReceiver(UserAccount receiver) {
-        this.receiver = receiver;
+        this.requestHandler = receiver;
     }
 
     public String getStatus() {
-        return status;
+        return requestStatus;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.requestStatus = status;
     }
 
     public Date getRequestDate() {
-        return requestDate;
+        return requestSubmissionDate;
     }
 
     public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
+        this.requestSubmissionDate = requestDate;
     }
 
     public Date getResolveDate() {
-        return resolveDate;
+        return requestCompletionDate;
     }
 
     public void setResolveDate(Date resolveDate) {
-        this.resolveDate = resolveDate;
+        this.requestCompletionDate = resolveDate;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(this.requestDate);
+        return String.valueOf(this.requestSubmissionDate);
     }
     
     

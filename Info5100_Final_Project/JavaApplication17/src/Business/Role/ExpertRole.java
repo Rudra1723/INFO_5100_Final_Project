@@ -18,8 +18,8 @@ import javax.swing.JPanel;
 public class ExpertRole extends Role {
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new ExpertWorkAreaJPanel(userProcessContainer, account, organization, business);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem ecoSystem) {
+        return new ExpertWorkAreaJPanel(userProcessContainer, userAccount, organization, ecoSystem);
     }
     
 }

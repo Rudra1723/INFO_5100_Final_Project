@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -13,12 +13,8 @@ import Business.UserAccount.UserAccount;
 public class Disease {
     private DiseaseType diseaseType;
     private DiseaseCondition diseaseCondition;
-
-
-    private UserAccount userAccount;
-    
+    private UserAccount diseaseUserAccount;    
     public Disease(){
-
     }
     
     public enum DiseaseType {
@@ -26,19 +22,19 @@ public class Disease {
         Diabetes("Diabetes"),
         BloodPressure("BloodPressure");
 
-        private String value;
+        private String typeValue;
 
         private DiseaseType(String value) {
-            this.value = value;
+            this.typeValue = value;
         }
 
         public String getValue() {
-            return value;
+            return typeValue;
         }
 
         @Override
         public String toString() {
-            return value;
+            return typeValue;
         }
     }
       
@@ -51,19 +47,19 @@ public class Disease {
         Moderate("Moderate"),
         Mild("Mild");
 
-        private String value;
+        private String conditionValue;
 
         private DiseaseCondition(String value) {
-            this.value = value;
+            this.conditionValue = value;
         }
 
         public String getValue() {
-            return value;
+            return conditionValue;
         }
 
         @Override
         public String toString() {
-            return value;
+            return conditionValue;
         }
     }
 
@@ -80,10 +76,10 @@ public class Disease {
     }
     
     public UserAccount getUserAccount() {
-        return userAccount;
+        return diseaseUserAccount;
     }
 
     public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+        this.diseaseUserAccount = userAccount;
     }
 }

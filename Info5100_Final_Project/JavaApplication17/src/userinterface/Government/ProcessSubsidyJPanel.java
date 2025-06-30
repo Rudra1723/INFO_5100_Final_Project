@@ -7,6 +7,8 @@ package userinterface.Government;
 
 
 import Business.WorkQueue.FarmerSubsidyWorkRequest;
+import Business.EcoSystem;
+import Business.DB4OUtil.DB4OUtil;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Date;
@@ -21,28 +23,22 @@ import userinterface.Farmer.FarmerWorkAreaJPanel;
 public class ProcessSubsidyJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     FarmerSubsidyWorkRequest request;
+    EcoSystem business;
     /**
      * Creates new form ProcessSubsidyJPanel
      */
-    public ProcessSubsidyJPanel(JPanel userProcessContainer,FarmerSubsidyWorkRequest request) {
+    public ProcessSubsidyJPanel(JPanel userProcessContainer,FarmerSubsidyWorkRequest request, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.request = request;
+        this.business = business;
         txtFarmerName.setText(request.getSender().getUsername());
         System.out.println("Amount req "+request.getRequestedSubsidyValue());
         txtSubsidyAmountRequested.setText(String.valueOf(request.getRequestedSubsidyValue()));
-        //txtSubsidyAmount.setText(TOOL_TIP_TEXT_KEY);
+       
     }
-    
-//    public double calculateLoss(){
-//        WorkQueue wq = request.getSender().getWorkQueue();
-////        for(WorkRequest wr: wq.getWorkRequestList()){
-////            if(wr.)
-////        }
-//        
-//        return 0.0;
-//    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,14 +56,14 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
         txtSubsidyAmountGranted = new javax.swing.JTextField();
         btnDone = new javax.swing.JButton();
         lblSubsidyAmount = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtOfficerComments = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnBackButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        Btnreject = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
 
         jLabel1.setText("Farmer Name:");
 
@@ -79,44 +75,20 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Subsidy Percent Granted:");
 
-        btnDone.setText("Done");
+        txtSubsidyAmountGranted.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSubsidyAmountGrantedActionPerformed(evt);
+            }
+        });
+
+        btnDone.setBackground(new java.awt.Color(0, 153, 102));
+        btnDone.setForeground(new java.awt.Color(255, 255, 255));
+        btnDone.setText("Approve");
         btnDone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoneActionPerformed(evt);
             }
         });
-
-        jPanel2.setBackground(new java.awt.Color(0, 153, 102));
-
-        jLabel7.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Process Subsidy");
-
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText(" Provide Subsidy to encourage Organic Farming ");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(402, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(287, 287, 287))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
 
         jLabel4.setText("Comments:");
 
@@ -131,45 +103,88 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("%");
 
+        Btnreject.setBackground(new java.awt.Color(255, 51, 51));
+        Btnreject.setForeground(new java.awt.Color(255, 255, 255));
+        Btnreject.setText("Reject");
+        Btnreject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnrejectActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
+
+        jLabel7.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Process Subsidy");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(504, 504, 504)
+                .addComponent(jLabel7)
+                .addContainerGap(594, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(55, 55, 55))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtFarmerName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSubsidyAmountRequested, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)
+                        .addComponent(btnBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtSubsidyAmountGranted, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(btnBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtOfficerComments, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSubsidyAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDone, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2))
+                                        .addGap(63, 63, 63)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtFarmerName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtSubsidyAmountRequested, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtSubsidyAmountGranted, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtOfficerComments, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblSubsidyAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnDone, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(377, 377, 377)
+                                .addComponent(Btnreject, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(btnBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -194,53 +209,119 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDone, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Btnreject, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(235, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
         // TODO add your handling code here:
-        //request.setGivenSubsidyValue(Double.parseDouble(txtSubsidyAmountGranted.getText()));
-        try{
-            String quantRegex = "[0-9]+";
-        if(txtSubsidyAmountGranted.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Please enter a valid Subsidy amount");
-        }else if(txtOfficerComments.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Please enter comments to proceed");
+       try {
+    // Updated regex to accept both integers and floats (including decimals)
+    String quantRegex = "^[0-9]+(\\.[0-9]+)?$";
+    
+    if (txtSubsidyAmountGranted.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid Subsidy percentage");
+        return;
+    } else if (txtOfficerComments.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter comments to proceed");
+        return;
+    }
+    
+    // Check if input contains only digits and decimal point
+    if (!txtSubsidyAmountGranted.getText().matches(quantRegex)) {
+        JOptionPane.showMessageDialog(null, 
+            "Please enter numbers only in percentage (e.g., 50 or 50.5)",
+            "Invalid Format",
+            JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Parse the percentage value as double (to handle float values)
+    double percentageGranted = Double.parseDouble(txtSubsidyAmountGranted.getText());
+    
+    // NEW VALIDATION: Check if percentage exceeds 100%
+    if (percentageGranted > 100.0) {
+        JOptionPane.showMessageDialog(null, 
+            "Subsidy percentage cannot exceed 100%.\nPlease enter a value between 0 and 100.",
+            "Invalid Percentage",
+            JOptionPane.WARNING_MESSAGE);
+        txtSubsidyAmountGranted.requestFocus();
+        return;
+    }
+    
+    // NEW VALIDATION: Check for negative values
+    if (percentageGranted < 0.0) {
+        JOptionPane.showMessageDialog(null, 
+            "Subsidy percentage cannot be negative.\nPlease enter a value between 0 and 100.",
+            "Invalid Percentage",
+            JOptionPane.WARNING_MESSAGE);
+        txtSubsidyAmountGranted.requestFocus();
+        return;
+    }
+    
+    // Calculate the actual subsidy amount
+    double requestedAmount = Double.parseDouble(txtSubsidyAmountRequested.getText());
+    double subsidyAmount = (percentageGranted / 100.0) * requestedAmount;
+    
+    if (percentageGranted == 0.0) {
+        // Subsidy rejected
+        lblSubsidyAmount.setText(String.format("%.2f", subsidyAmount));
+        request.setStatus("Subsidy Rejected");
+        request.setResolveDate(new Date());
+        request.isIsSubsidyApproved(false);
+        request.setGivenSubsidyValue(subsidyAmount);
+        request.setOfficerComment(txtOfficerComments.getText());
+        txtSubsidyAmountGranted.setEditable(false);
+        txtOfficerComments.setEditable(false);
+        
+        // Save to database to persist the subsidy processing
+        try {
+            Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+            JOptionPane.showMessageDialog(null, "Subsidy Request Rejected !!!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Warning: Subsidy rejected but there was an issue saving to database: " + e.getMessage());
         }
-        else{
-            if(!txtSubsidyAmountGranted.getText().matches(quantRegex)){
-                JOptionPane.showMessageDialog(null, "Please enter digits in quantity");
-                return;
-            }
-            if(Integer.parseInt(txtSubsidyAmountGranted.getText())==0){
-                lblSubsidyAmount.setText(String.valueOf((Double.parseDouble(txtSubsidyAmountGranted.getText())/100)*Double.parseDouble(txtSubsidyAmountRequested.getText())));
-                request.setStatus("Subsidy Rejected");
-                request.setResolveDate(new Date());
-                request.isIsSubsidyApproved(false);
-                request.setGivenSubsidyValue(Double.parseDouble(lblSubsidyAmount.getText()));
-                request.setOfficerComment(txtOfficerComments.getText());
-                txtSubsidyAmountGranted.setEditable(false);
-                txtOfficerComments.setEditable(false);
-                JOptionPane.showMessageDialog(null, "Subsidy Request Rejected !!!");
-            }else{
-                lblSubsidyAmount.setText(String.valueOf((Double.parseDouble(txtSubsidyAmountGranted.getText())/100)*Double.parseDouble(txtSubsidyAmountRequested.getText())));
-                request.setStatus("Subsidy Provided");
-                //Date d1=new Date();
-                request.setResolveDate(new Date());
-                request.isIsSubsidyApproved(true);
-                request.setGivenSubsidyValue(Double.parseDouble(lblSubsidyAmount.getText()));
-                request.setOfficerComment(txtOfficerComments.getText());
-                txtSubsidyAmountGranted.setEditable(false);
-                txtOfficerComments.setEditable(false);
-                JOptionPane.showMessageDialog(null, "Subsidy Request Processed Successfully !!!");
-            }
+    } else {
+        // Subsidy approved
+        lblSubsidyAmount.setText(String.format("%.2f", subsidyAmount));
+        request.setStatus("Subsidy Provided");
+        request.setResolveDate(new Date());
+        request.isIsSubsidyApproved(true);
+        request.setGivenSubsidyValue(subsidyAmount);
+        request.setOfficerComment(txtOfficerComments.getText());
+        txtSubsidyAmountGranted.setEditable(false);
+        txtOfficerComments.setEditable(false);
+        
+        // Save to database to persist the subsidy processing
+        try {
+            Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+            // Show detailed success message with proper decimal formatting
+            String successMessage = String.format(
+                "Subsidy Request Processed Successfully!\n\n" +
+                "Percentage Granted: %.2f%%\n" +
+                "Requested Amount: $%.2f\n" +
+                "Subsidy Amount: $%.2f",
+                percentageGranted, requestedAmount, subsidyAmount
+            );
+            JOptionPane.showMessageDialog(null, successMessage);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Warning: Subsidy approved but there was an issue saving to database: " + e.getMessage());
         }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Please enter subsidy percentage in proper format");
-        }
-            
+    }
+    
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(null, 
+        "Please enter subsidy percentage in proper format.\nExample: 50 or 50.5 or 75.25",
+        "Invalid Format",
+        JOptionPane.ERROR_MESSAGE);
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(null, 
+        "An error occurred while processing the subsidy: " + e.getMessage(),
+        "Processing Error",
+        JOptionPane.ERROR_MESSAGE);
+    e.printStackTrace();
+}
     }//GEN-LAST:event_btnDoneActionPerformed
 
     private void btnBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackButtonActionPerformed
@@ -254,8 +335,85 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackButtonActionPerformed
 
+    private void txtSubsidyAmountGrantedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubsidyAmountGrantedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSubsidyAmountGrantedActionPerformed
+
+    private void BtnrejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnrejectActionPerformed
+        // TODO add your handling code here:
+        try {
+        // Check if officer has provided comments for rejection
+        if (txtOfficerComments.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, 
+                "Please enter comments explaining the reason for rejection",
+                "Comments Required",
+                JOptionPane.WARNING_MESSAGE);
+            txtOfficerComments.requestFocus();
+            return;
+        }
+        
+        // Confirm rejection with officer
+        int confirmResult = JOptionPane.showConfirmDialog(null, 
+            "Are you sure you want to reject this subsidy request?\n\n" +
+            "Farmer: " + request.getSender().getUsername() + "\n" +
+            "Requested Amount: $" + String.format("%.2f", request.getRequestedSubsidyValue()) + "\n\n" +
+            "This action cannot be undone.",
+            "Confirm Rejection",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE);
+        
+        if (confirmResult == JOptionPane.YES_OPTION) {
+            // Set rejection values
+            double subsidyAmount = 0.0;
+            lblSubsidyAmount.setText(String.format("%.2f", subsidyAmount));
+            txtSubsidyAmountGranted.setText("0");
+            
+            // Update request status
+            request.setStatus("Subsidy Rejected");
+            request.setResolveDate(new Date());
+            request.isIsSubsidyApproved(false);
+            request.setGivenSubsidyValue(subsidyAmount);
+            request.setOfficerComment(txtOfficerComments.getText());
+            
+            // Disable editing
+            txtSubsidyAmountGranted.setEditable(false);
+            txtOfficerComments.setEditable(false);
+            Btnreject.setEnabled(false);
+            btnDone.setEnabled(false);
+            
+            // Show rejection confirmation
+            String rejectionMessage = String.format(
+                "Subsidy Request Rejected!\n\n" +
+                "Farmer: %s\n" +
+                "Requested Amount: $%.2f\n" +
+                "Rejection Reason: %s\n\n" +
+                "The farmer will be notified of this decision.",
+                request.getSender().getUsername(),
+                request.getRequestedSubsidyValue(),
+                txtOfficerComments.getText()
+            );
+            
+            // Save to database to persist the subsidy processing
+            try {
+                Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(business);
+                JOptionPane.showMessageDialog(null, rejectionMessage, 
+                    "Subsidy Rejected", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Warning: Subsidy rejected but there was an issue saving to database: " + e.getMessage());
+            }
+        }
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, 
+            "An error occurred while rejecting the subsidy: " + e.getMessage(),
+            "Processing Error",
+            JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_BtnrejectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btnreject;
     private javax.swing.JButton btnBackButton;
     private javax.swing.JButton btnDone;
     private javax.swing.JLabel jLabel1;
@@ -265,8 +423,7 @@ public class ProcessSubsidyJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblSubsidyAmount;
     private javax.swing.JTextField txtFarmerName;
     private javax.swing.JTextField txtOfficerComments;

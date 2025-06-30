@@ -12,12 +12,11 @@ import Business.Forum.*;
  * @author rudrapatel
  */
 public class Farmer {
-    private String name;
-    private String city;
-    private String state;
-    private String email;
-    private OrganicCertification organicCertification;
-    private Forum forum;
- 
-    
+    private String farmerName;
+    private String farmerCity;
+    private String farmerState;
+    private String farmerPhoneNumber;
+    private OrganicCertification farmerOrganicCertification;
+    private Forum farmerForum;
+  
 }

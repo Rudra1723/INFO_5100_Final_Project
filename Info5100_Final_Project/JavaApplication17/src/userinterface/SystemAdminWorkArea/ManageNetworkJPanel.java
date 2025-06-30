@@ -5,6 +5,7 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -20,10 +21,6 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
 
-    /**
-     *
-     * Creates new form ManageNetworkJPanel
-     */
     public ManageNetworkJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
 
@@ -31,6 +28,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         this.system = system;
 
         populateNetworkTable();
+        setupTableSelectionListener();
     }
 
     private void populateNetworkTable() {
@@ -43,6 +41,37 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+private void populateFormFromSelectedRow() {
+    int selectedRow = networkJTable.getSelectedRow();
+    
+    if (selectedRow >= 0) {
+        // Get network name from selected row
+        String networkName = (String) networkJTable.getValueAt(selectedRow, 0);
+        
+        // Populate name field
+        nameJTextField.setText(networkName);
+    }
+}
+
+
+private void setupTableSelectionListener() {
+    networkJTable.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        @Override
+        public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+            // Only process when selection is finalized (not during drag)
+            if (!e.getValueIsAdjusting()) {
+                populateFormFromSelectedRow();
+            }
+        }
+    });
+}
+
+
+public void clearFormFields() {
+    nameJTextField.setText("");
+    // Clear table selection
+    networkJTable.clearSelection();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,8 +88,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         submitJButton = new javax.swing.JButton();
         nameJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,7 +101,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 {null}
             },
             new String [] {
-                "Name"
+                "List"
             }
         ) {
             Class[] types = new Class [] {
@@ -95,10 +126,18 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Name");
 
-        submitJButton.setText("Submit");
+        submitJButton.setBackground(new java.awt.Color(0, 153, 102));
+        submitJButton.setForeground(new java.awt.Color(255, 255, 255));
+        submitJButton.setText("Create");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
+            }
+        });
+
+        nameJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameJTextFieldActionPerformed(evt);
             }
         });
 
@@ -109,27 +148,43 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDelete.setBackground(new java.awt.Color(255, 51, 51));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("Remove");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel6.setFont(new java.awt.Font("Malayalam MN", 0, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Manage Network");
+        jLabel13.setFont(new java.awt.Font("Bai Jamjuree", 1, 36)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Manage Network ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jLabel6)
-                .addContainerGap(1121, Short.MAX_VALUE))
+                .addGap(504, 504, 504)
+                .addComponent(jLabel13)
+                .addContainerGap(594, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel6)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -137,51 +192,142 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backJButton)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14)
+                        .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(143, 143, 143)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(backJButton)
-                .addGap(143, 143, 143))
+                .addGap(59, 59, 59)
+                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(301, 301, 301))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
-        String name = nameJTextField.getText();
-
-        Network network = system.createAndAddNetwork();
+        if (!validateNetworkInputs()) {
+        return; // Stop execution if validation fails
+    }
+    
+    String name = nameJTextField.getText().trim();
+    
+    // Check for duplicate network name
+    for (Network existingNetwork : system.getNetworkList()) {
+        if (existingNetwork.getName().equalsIgnoreCase(name)) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Network '" + name + "' already exists.\nPlease choose a different name.",
+                "Duplicate Network Name",
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            nameJTextField.requestFocus();
+            return;
+        }
+    }
+    
+    try {
+        Network network = system.establishNewNetwork();
         network.setName(name);
-
+        
+        // Save to database
+        Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(system);
+        
         populateNetworkTable();
+        clearNetworkFields();
+        
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Network '" + name + "' created successfully!",
+            "Success",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Error creating network: " + e.getMessage(),
+            "Creation Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
+}
+
+// Validation method for Network inputs
+private boolean validateNetworkInputs() {
+    // Validate Name
+    String name = nameJTextField.getText().trim();
+    if (name.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Network name cannot be empty.",
+            "Name Required",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        nameJTextField.requestFocus();
+        return false;
+    }
+    
+    if (name.length() < 2) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Network name must be at least 2 characters long.",
+            "Invalid Name",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        nameJTextField.requestFocus();
+        return false;
+    }
+    
+    if (name.length() > 100) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Network name cannot exceed 100 characters.",
+            "Invalid Name",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        nameJTextField.requestFocus();
+        return false;
+    }
+    
+    // Check for valid network name characters
+    if (!name.matches("^[a-zA-Z0-9\\s&.-]+$")) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Network name can only contain letters, numbers, spaces, ampersands, dots, and hyphens.",
+            "Invalid Name",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        nameJTextField.requestFocus();
+        return false;
+    }
+    
+    return true; // All validations passed
+}
+
+// Helper method to clear fields
+private void clearNetworkFields() {
+    nameJTextField.setText("");
+    networkJTable.clearSelection();
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -193,10 +339,238 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void nameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameJTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameJTextFieldActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+   int selectedRow = networkJTable.getSelectedRow();
+    
+    // Check if a row is selected
+    if (selectedRow < 0) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Please select a network to delete.", 
+            "No Selection", 
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Get the network name from the selected row
+    String networkName = (String) networkJTable.getValueAt(selectedRow, 0);
+    
+    // Find the network object and check for dependencies
+    Network networkToDelete = null;
+    int enterpriseCount = 0;
+    int totalUserAccounts = 0;
+    int totalOrganizations = 0;
+    
+    // Find the network and count all dependencies
+    for (Network network : system.getNetworkList()) {
+        if (network.getName().equals(networkName)) {
+            networkToDelete = network;
+            
+            // Count enterprises in this network
+            if (network.getEnterpriseDirectory() != null) {
+                enterpriseCount = network.getEnterpriseDirectory().getEnterpriseList().size();
+                
+                // Count all user accounts and organizations across all enterprises
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise.getUserAccountDirectory() != null) {
+                        totalUserAccounts += enterprise.getUserAccountDirectory().getUserAccountList().size();
+                    }
+                    if (enterprise.getOrganizationDirectory() != null) {
+                        totalOrganizations += enterprise.getOrganizationDirectory().getOrganizationList().size();
+                    }
+                }
+            }
+            break;
+        }
+    }
+    
+    if (networkToDelete == null) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Network not found. Please refresh the table and try again.",
+            "Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    // Create detailed warning message
+    String warningMessage = "Are you sure you want to delete the network:\n" +
+        "Network: " + networkName;
+    
+    if (enterpriseCount > 0 || totalUserAccounts > 0 || totalOrganizations > 0) {
+        warningMessage += "\n\nWARNING: This network contains:\n";
+        if (enterpriseCount > 0) {
+            warningMessage += "- " + enterpriseCount + " enterprise(s)\n";
+        }
+        if (totalUserAccounts > 0) {
+            warningMessage += "- " + totalUserAccounts + " user account(s)\n";
+        }
+        if (totalOrganizations > 0) {
+            warningMessage += "- " + totalOrganizations + " organization(s)\n";
+        }
+        warningMessage += "\nDeleting this network will permanently delete ALL associated data!\n" +
+                         "This action cannot be undone!";
+    }
+    
+    // Show confirmation dialog with appropriate icon
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+        warningMessage,
+        "Confirm Network Deletion",
+        javax.swing.JOptionPane.YES_NO_OPTION,
+        enterpriseCount > 0 ? javax.swing.JOptionPane.WARNING_MESSAGE : javax.swing.JOptionPane.QUESTION_MESSAGE);
+    
+    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+        try {
+            // Remove the network from the system's network list
+            boolean removed = system.getNetworkList().remove(networkToDelete);
+            
+            if (removed) {
+                // Save changes to db4o database using your utility
+                Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(system);
+                
+                // Refresh the table display
+                populateNetworkTable();
+                
+                // Clear input fields
+                clearFields();
+                
+                // Show success message
+                String successMessage = "Network '" + networkName + "' deleted successfully!";
+                if (enterpriseCount > 0 || totalUserAccounts > 0 || totalOrganizations > 0) {
+                    successMessage += "\n\nDeleted along with:\n";
+                    if (enterpriseCount > 0) {
+                        successMessage += "- " + enterpriseCount + " enterprise(s)\n";
+                    }
+                    if (totalUserAccounts > 0) {
+                        successMessage += "- " + totalUserAccounts + " user account(s)\n";
+                    }
+                    if (totalOrganizations > 0) {
+                        successMessage += "- " + totalOrganizations + " organization(s)";
+                    }
+                }
+                
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    successMessage,
+                    "Success",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                throw new Exception("Failed to remove network from system");
+            }
+            
+        } catch (Exception e) {
+            // Show error message
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Error deleting network: " + e.getMessage(),
+                "Deletion Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+}
+
+// Helper method to clear input fields after deletion
+private void clearFields() {
+    nameJTextField.setText("");
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+         int selectedRow = networkJTable.getSelectedRow();
+    
+    // Check if a row is selected
+    if (selectedRow < 0) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Please select a network to update.", 
+            "No Selection", 
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Input validation for the form fields
+    if (!validateNetworkInputs()) {
+        return; // Stop execution if validation fails
+    }
+    
+    // Get current data from the selected row
+    String currentNetworkName = (String) networkJTable.getValueAt(selectedRow, 0);
+    
+    // Get new data from the form
+    String newName = nameJTextField.getText().trim();
+    
+    // Find the current network
+    Network networkToUpdate = null;
+    
+    for (Network network : system.getNetworkList()) {
+        if (network.getName().equals(currentNetworkName)) {
+            networkToUpdate = network;
+            break;
+        }
+    }
+    
+    if (networkToUpdate == null) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Network not found. Please refresh the table and try again.",
+            "Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    // Check for duplicate name (only if name is changing)
+    if (!newName.equals(currentNetworkName)) {
+        for (Network existingNetwork : system.getNetworkList()) {
+            if (existingNetwork.getName().equalsIgnoreCase(newName) && 
+                !existingNetwork.equals(networkToUpdate)) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Network '" + newName + "' already exists.\nPlease choose a different name.",
+                    "Duplicate Network Name",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                nameJTextField.requestFocus();
+                return;
+            }
+        }
+    }
+    
+    try {
+        // Update network name
+        networkToUpdate.setName(newName);
+        
+        // Save to database
+        Business.DB4OUtil.DB4OUtil.getInstance().storeSystem(system);
+        
+        // Refresh the table
+        populateNetworkTable();
+        
+        // Clear input fields
+        clearNetworkFields();
+        
+        // Show success message
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Network updated successfully!",
+            "Success",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Error updating network: " + e.getMessage(),
+            "Update Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
+}
+
+// Optional: Add a "Clear" button action if you want to clear the form
+private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    clearFormFields();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;

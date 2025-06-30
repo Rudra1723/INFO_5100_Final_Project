@@ -16,7 +16,7 @@ import userinterface.Customer.CustomerWorkAreaJPanel;
  * @author rudrapatel
  */
 public class CustomerRole extends Role{
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new CustomerWorkAreaJPanel(userProcessContainer, account, enterprise,organization, business);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem ecoSystem) {
+        return new CustomerWorkAreaJPanel(userProcessContainer, userAccount, enterprise, organization, ecoSystem);
     }
 }

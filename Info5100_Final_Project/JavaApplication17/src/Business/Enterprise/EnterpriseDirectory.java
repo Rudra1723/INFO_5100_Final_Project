@@ -12,38 +12,38 @@ import java.util.ArrayList;
  * @author rudrapatel
  */
 public class EnterpriseDirectory {
-    private ArrayList<Enterprise> enterpriseList;
+    private ArrayList<Enterprise> enterpriseCollection;
    
 
     public ArrayList<Enterprise> getEnterpriseList() {
-        return enterpriseList;
+        return enterpriseCollection;
     }
 
     public void setEnterpriseList(ArrayList<Enterprise> enterpriseList) {
-        this.enterpriseList = enterpriseList;
+        this.enterpriseCollection = enterpriseList;
     }
     
     public EnterpriseDirectory(){
-        enterpriseList=new ArrayList<Enterprise>();
+        enterpriseCollection = new ArrayList<Enterprise>();
     }
     
     //Create enterprise
-    public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type){
-        Enterprise enterprise=null;
-        if(type==Enterprise.EnterpriseType.Agriculture){
-            enterprise=new AgricultureEnterprise(name);
-            enterpriseList.add(enterprise);
+    public Enterprise createAndAddEnterprise(String name, Enterprise.EnterpriseType type){
+        Enterprise newEnterprise = null;
+        if(type == Enterprise.EnterpriseType.Agriculture){
+            newEnterprise = new AgricultureEnterprise(name);
+            enterpriseCollection.add(newEnterprise);
         }
         
-        if(type==Enterprise.EnterpriseType.Government){
-            enterprise=new GovernmentEnterprise(name);
-            enterpriseList.add(enterprise);
+        if(type == Enterprise.EnterpriseType.Government){
+            newEnterprise = new GovernmentEnterprise(name);
+            enterpriseCollection.add(newEnterprise);
         }
-        if(type==Enterprise.EnterpriseType.Hospital){
-            enterprise=new HospitalEnterprise(name);
-            enterpriseList.add(enterprise);
+        if(type == Enterprise.EnterpriseType.Hospital){
+            newEnterprise = new HospitalEnterprise(name);
+            enterpriseCollection.add(newEnterprise);
         }
-        return enterprise;
+        return newEnterprise;
     }
 }
 

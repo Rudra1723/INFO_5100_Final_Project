@@ -9,6 +9,8 @@ import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.ta.TransparentPersistenceSupport;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 
 /**
@@ -17,62 +19,110 @@ import java.nio.file.Paths;
  */
 public class DB4OUtil {
 
-    private static final String FILENAME = Paths.get("Databank.db4o").toAbsolutePath().toString();// path to the data store
-    private static DB4OUtil dB4OUtil;
+    private static final String DATABASE_FILE_PATH = Paths.get("Databank.db4o").toAbsolutePath().toString();
+    private static DB4OUtil databaseManagerInstance;
+    private static final Logger LOGGER = Logger.getLogger(DB4OUtil.class.getName());
     
     public synchronized static DB4OUtil getInstance(){
-        if (dB4OUtil == null){
-            dB4OUtil = new DB4OUtil();
+        if (databaseManagerInstance == null){
+            databaseManagerInstance = new DB4OUtil();
         }
-        return dB4OUtil;
+        return databaseManagerInstance;
     }
 
-    protected synchronized static void shutdown(ObjectContainer conn) {
-        if (conn != null) {
-            conn.close();
+    protected synchronized static void shutdown(ObjectContainer connection) {
+        if (connection != null) {
+            connection.close();
         }
     }
 
     private ObjectContainer createConnection() {
         try {
+            EmbeddedConfiguration databaseConfiguration = Db4oEmbedded.newConfiguration();
+            databaseConfiguration.common().add(new TransparentPersistenceSupport());
+            databaseConfiguration.common().activationDepth(Integer.MAX_VALUE);
+            databaseConfiguration.common().updateDepth(Integer.MAX_VALUE);
+            databaseConfiguration.common().objectClass(EcoSystem.class).cascadeOnUpdate(true);
 
-            EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
-            config.common().add(new TransparentPersistenceSupport());
-            //Controls the number of objects in memory
-            config.common().activationDepth(Integer.MAX_VALUE);
-            //Controls the depth/level of updation of Object
-            config.common().updateDepth(Integer.MAX_VALUE);
-
-            //Register your top most Class here
-            config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true); // Change to the object you want to save
-
-            ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
-            return db;
+            ObjectContainer databaseConnection = Db4oEmbedded.openFile(databaseConfiguration, DATABASE_FILE_PATH);
+            return databaseConnection;
         } catch (Exception ex) {
-            System.out.print(ex.getMessage());
+            LOGGER.log(Level.SEVERE, "Database connection failed: " + ex.getMessage(), ex);
         }
         return null;
     }
 
-    public synchronized void storeSystem(EcoSystem system) {
-        ObjectContainer conn = createConnection();
-        conn.store(system);
-        conn.commit();
-        conn.close();
+    public synchronized void storeSystem(EcoSystem ecoSystem) {
+        ObjectContainer databaseConnection = createConnection();
+        if (databaseConnection != null) {
+            try {
+                databaseConnection.store(ecoSystem);
+                databaseConnection.commit();
+                LOGGER.info("System data stored successfully");
+            } catch (Exception ex) {
+                LOGGER.log(Level.SEVERE, "Failed to store system data: " + ex.getMessage(), ex);
+            } finally {
+                databaseConnection.close();
+            }
+        }
     }
     
     public EcoSystem retrieveSystem(){
-        ObjectContainer conn = createConnection();
-        ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
-        EcoSystem system;
-
-        if (systems.size() == 0){
-            system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
+        ObjectContainer databaseConnection = createConnection();
+        EcoSystem ecoSystem = null;
+        
+        if (databaseConnection != null) {
+            try {
+                ObjectSet<EcoSystem> ecoSystemSet = databaseConnection.query(EcoSystem.class);
+                
+                if (ecoSystemSet.size() == 0){
+                    ecoSystem = ConfigureASystem.configure();
+                    storeSystem(ecoSystem); // Store the new system immediately
+                    LOGGER.info("New system configuration created and stored");
+                } else {
+                    ecoSystem = ecoSystemSet.get(ecoSystemSet.size()-1);
+                    LOGGER.info("Existing system configuration retrieved successfully");
+                }
+            } catch (Exception ex) {
+                LOGGER.log(Level.SEVERE, "Failed to retrieve system data: " + ex.getMessage(), ex);
+                LOGGER.info("Creating new system configuration due to database error");
+                ecoSystem = ConfigureASystem.configure();
+                storeSystem(ecoSystem); // Store the new system immediately
+            } finally {
+                databaseConnection.close();
+            }
+        } else {
+            LOGGER.warning("Database connection failed, creating new system configuration");
+            ecoSystem = ConfigureASystem.configure();
         }
-        else{
-                   system = systems.get(systems.size()-1);
+        
+        return ecoSystem;
+    }
+    
+    public boolean isDatabaseAccessible() {
+        ObjectContainer testConnection = createConnection();
+        if (testConnection != null) {
+            testConnection.close();
+            return true;
         }
-        conn.close();
-        return system;
+        return false;
+    }
+    
+    public void clearDatabase() {
+        ObjectContainer databaseConnection = createConnection();
+        if (databaseConnection != null) {
+            try {
+                ObjectSet<EcoSystem> ecoSystemSet = databaseConnection.query(EcoSystem.class);
+                for (EcoSystem system : ecoSystemSet) {
+                    databaseConnection.delete(system);
+                }
+                databaseConnection.commit();
+                LOGGER.info("Database cleared successfully");
+            } catch (Exception ex) {
+                LOGGER.log(Level.SEVERE, "Failed to clear database: " + ex.getMessage(), ex);
+            } finally {
+                databaseConnection.close();
+            }
+        }
     }
 }

@@ -24,18 +24,18 @@ public abstract class Role {
         Officer("Officer"),
         Customer("Customer");
         
-        private String value;
+        private String roleTypeValue;
         private RoleType(String value){
-            this.value = value;
+            this.roleTypeValue = value;
         }
 
         public String getValue() {
-            return value;
+            return roleTypeValue;
         }
 
         @Override
         public String toString() {
-            return value;
+            return roleTypeValue;
         }
     }
     

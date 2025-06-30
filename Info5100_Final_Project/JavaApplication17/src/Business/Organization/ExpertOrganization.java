@@ -20,9 +20,9 @@ public class ExpertOrganization extends Organization{
 
     @Override
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList();
-        roles.add(new ExpertRole());
-        return roles;
+        ArrayList<Role> supportedRoles = new ArrayList();
+        supportedRoles.add(new ExpertRole());
+        return supportedRoles;
     }
      
    
